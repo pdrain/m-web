@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.meilituibian.web.mapper.CategoryMapper">
+    <resultMap id="CategoryResultMap" type="Category">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="range" property="range"/>
+        <result column="icon" property="icon"/>
+        <result column="hot" property="hot"/>
+        <result column="grade" property="grade"/>
+        <result column="major_name" property="majorName"/>
+        <result column="alias_name" property="aliasName"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="categoryList"  resultMap="CategoryResultMap">
+          select * from Category where status = 1 order by range desc
+    </select>
+
+    <select id="getCategoryListByGrade" resultMap="CategoryResultMap">
+        select * from Category where status = 1 and grade=#{grade}
+    </select>
+
+    <select id="getUnFinishCateogryList" resultMap="CategoryResultMap">
+        SELECT * FROM category WHERE STATUS=1 AND grade=3 AND NOT EXISTS (SELECT 1 FROM project WHERE category_id = category.id)
+    </select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<!-- Side-Nav-->
+<aside class="main-sidebar hidden-print" th:fragment="menu">
+    <section class="sidebar">
+        <!-- Sidebar Menu-->
+        <ul class="sidebar-menu">
+            <li class="active menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
+                <li class="treeview menu${menu.id}"><a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class=""><a th:href="@{/project/list}"><i class="fa fa-circle-o"></i>项目列表</a></li>
+                        <li class=""><a th:href="@{/project/page}"><i class="fa fa-circle-o"></i>增加详情</a></li>
+                    </ul>
+                </li>
+                <li class="treeview menu${menu.id}"><a href="#"><i class="fa fa-edit"></i><span>基本信息管理</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="#"><i class="fa fa-circle-o"></i>基本信息查询</a></li>
+                    </ul>
+                </li>
+        </ul>
+    </section>
+</aside>
+</body>
+</html>
