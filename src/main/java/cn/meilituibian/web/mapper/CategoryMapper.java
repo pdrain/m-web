@@ -13,4 +13,6 @@ public interface CategoryMapper {
     List<Category> getCategoryListByGrade(Long grade);
 
     List<Category> getUnFinishCateogryList();
+
+    void save(@Param("category") Category category);
 }

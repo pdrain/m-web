@@ -11,15 +11,20 @@
         <!-- Sidebar Menu-->
         <ul class="sidebar-menu">
             <li class="active menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
-                <li class="treeview menu${menu.id}"><a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
+                <li class="treeview active"  th:if="${param.m ==1}">
+                <li class="treeview active"  th:if="${param.m !=1}">
+                    <a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
-                        <li class=""><a th:href="@{/project/list}"><i class="fa fa-circle-o"></i>项目列表</a></li>
-                        <li class=""><a th:href="@{/project/page}"><i class="fa fa-circle-o"></i>增加详情</a></li>
+                        <li class=""><a th:href="@{/category/page(m=1)}"><i class="fa fa-circle-o"></i>增加菜单</a></li>
+                        <li class=""><a th:href="@{/project/list(m=1)}"><i class="fa fa-circle-o"></i>项目列表</a></li>
+                        <li class=""><a th:href="@{/project/page(m=1)}"><i class="fa fa-circle-o"></i>增加详情</a></li>
                     </ul>
                 </li>
-                <li class="treeview menu${menu.id}"><a href="#"><i class="fa fa-edit"></i><span>基本信息管理</span><i class="fa fa-angle-right"></i></a>
+                <li class="treeview active" th:if="${param.m ==2}">
+                <li class="treeview " th:if="${param.m !=2}">
+                    <a href="#"><i class="fa fa-edit"></i><span>基本信息管理</span><i class="fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="#"><i class="fa fa-circle-o"></i>基本信息查询</a></li>
+                        <li class=""><a th:href="@{/info/page(m=2)}"><i class="fa fa-circle-o"></i>增加基本信息</a></li>
                     </ul>
                 </li>
         </ul>

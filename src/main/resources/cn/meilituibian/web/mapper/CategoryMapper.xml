@@ -17,7 +17,7 @@
     </resultMap>
 
     <select id="categoryList"  resultMap="CategoryResultMap">
-          select * from Category where status = 1 order by range desc
+          select * from Category where status = 1 order by `range` desc
     </select>
 
     <select id="getCategoryListByGrade" resultMap="CategoryResultMap">
@@ -26,6 +26,11 @@
 
     <select id="getUnFinishCateogryList" resultMap="CategoryResultMap">
         SELECT * FROM category WHERE STATUS=1 AND grade=3 AND NOT EXISTS (SELECT 1 FROM project WHERE category_id = category.id)
+    </select>
+
+    <select id="save" parameterType="Category">
+        insert into category(name, parent_id, grade, `range`,icon, major_name, alias_name,hot, status)
+        value(#{category.name}, #{category.parentId}, #{category.grade}, #{category.range}, #{category.icon},#{category.majorName}, #{category.aliasName}, #{category.hot}, #{category.status})
     </select>
 
 </mapper>

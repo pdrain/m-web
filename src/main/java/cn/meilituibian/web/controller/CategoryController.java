@@ -24,5 +24,28 @@ public class CategoryController {
         return view;
     }
 
+    @RequestMapping(value = "page", method = RequestMethod.GET)
+    public ModelAndView page() {
+        List<Category> list = categoryService.categoryList();
+        ModelAndView view = new ModelAndView("categoryPage");
+        view.addObject("categories", list);
+        return view;
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ModelAndView add(Category category) {
+        ModelAndView view = new ModelAndView("categoryPage");
+        try {
+            categoryService.save(category);
+            List<Category> list = categoryService.categoryList();
+
+            view.addObject("categories", list);
+            view.addObject("message", "增加成功");
+        } catch (Exception e) {
+            view.addObject("message", "增加失败");
+        }
+        return view;
+    }
+
 
 }

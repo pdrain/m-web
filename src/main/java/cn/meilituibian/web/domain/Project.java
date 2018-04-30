@@ -21,6 +21,7 @@ public class Project implements Serializable{
     private BigDecimal minPrice;
     private BigDecimal maxPrice;
     private int status;
+    private String content;
 
     public Long getProjectId() {
         return projectId;
@@ -156,5 +157,13 @@ public class Project implements Serializable{
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

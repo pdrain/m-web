@@ -5,14 +5,14 @@
 <mapper namespace="cn.meilituibian.web.mapper.ProjectMapper">
     <sql id="sql_field">
         project_id as projectId ,category_id as categoryId, category_name as categoryName, short_desc as shortDesc, min_price as minPrice, max_price as maxPrice,detail,operation,treatment,
-        recure,advantage,disadvantage,concern,safe,complex, img_path as imgPath,status
+        recure,advantage,disadvantage,concern,safe,complex, img_path as imgPath,status, content
      </sql>
 
     <insert id="addProject" parameterType="Project" useGeneratedKeys="true" keyColumn="project_id">
         INSERT INTO project(category_id,short_desc,min_price,max_price,category_name,img_path,detail,operation,treatment,recure,advantage,
-        disadvantage,concern,safe,complex)
+        disadvantage,concern,safe,complex, content)
         VALUES(#{categoryId},#{shortDesc},#{minPrice},#{maxPrice},#{categoryName},#{imgPath},#{detail},
-        #{operation},#{treatment},#{recure},#{advantage},#{disadvantage},#{concern},#{safe},#{complex})
+        #{operation},#{treatment},#{recure},#{advantage},#{disadvantage},#{concern},#{safe},#{complex}, #{content})
     </insert>
 
     <select id="projectList" resultType="Project">

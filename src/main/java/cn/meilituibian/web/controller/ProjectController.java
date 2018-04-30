@@ -23,9 +23,9 @@ public class ProjectController {
     private CategoryService categoryService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    private ModelAndView addProject(Project project) {
-        ModelAndView view =  new ModelAndView();
-        return view;
+    private String addProject(Project project) {
+        projectService.addProject(project);
+        return "redirect:/project/list";
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
