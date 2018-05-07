@@ -2,7 +2,7 @@ package cn.meilituibian.web.service;
 
 import cn.meilituibian.web.domain.Project;
 import cn.meilituibian.web.mapper.ProjectMapper;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

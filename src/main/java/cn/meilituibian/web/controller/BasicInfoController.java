@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/info")
+@RequestMapping("/admin/info")
 public class BasicInfoController {
     @Autowired
     private BasicInfoService basicInfoService;

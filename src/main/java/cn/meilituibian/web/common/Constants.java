@@ -6,4 +6,5 @@ package cn.meilituibian.web.common;
 public interface Constants {
     String CAPTCHA_CODE = "captcha_code";
     int PAGE_SIZE = 2;
+    String USER = "user";
 }

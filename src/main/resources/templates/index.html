@@ -155,7 +155,7 @@
         <div><span style="font-size: 12px;" th:text="${message}"></span></div>
         <form class="form-signin" th:action="@{/login}" method="post">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="邮箱地址" required autofocus oninvalid="this.setCustomValidity('请输入合法的Email');" oninput="setCustomValidity('')">
+            <input type="input" name="user" id="inputEmail" class="form-control" placeholder="用户名" required autofocus oninvalid="this.setCustomValidity('请输入用户名');" oninput="setCustomValidity('')">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required oninvalid="this.setCustomValidity('请输入密码');" oninput="setCustomValidity('')">
             <input type="text" id="inputCode" name="code" class="form-control" placeholder="验证码" required oninvalid="this.setCustomValidity('请输入验证码');" oninput="setCustomValidity('')">
             <div style="margin-top: 3px" id="captcha"><img src="captcha" style="cursor: hand" /><span style="font-size: 12px; margin-left: 5px; cursor: hand">点击刷新</span></div>

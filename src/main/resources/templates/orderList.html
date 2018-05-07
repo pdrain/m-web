@@ -14,13 +14,13 @@
     <div class="content-wrapper">
         <div class="page-title">
             <div>
-                <p>项目列表</p>
+                <p>订单列表</p>
             </div>
             <div>
                 <ul class="breadcrumb">
                     <li><i class="fa fa-home fa-lg"></i></li>
-                    <li>项目管理</li>
-                    <li><a href="#">项目列表</a></li>
+                    <li>订单管理</li>
+                    <li><a href="#">订单列表</a></li>
                 </ul>
             </div>
         </div>
@@ -28,12 +28,15 @@
             <div class="col-md-12">
 
                 <div class="card">
-                    <form class="form-horizontal" th:action="@{/admin/project/list}" method="get">
-                        <label class="col-lg-2">项目类别</label>
+                    <form class="form-horizontal" th:action="@{/admin/orders}" method="get">
+                        <label class="col-lg-2">订单状态</label>
                     <div class="col-lg-4">
-                        <select class="form-control" name="categoryId" id="categoryId">
+                        <select class="form-control" name="status" id="status">
                             <option value="">所有</option>
-                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                            <option value="-2">已取消</option>
+                            <option value="0">待处理</option>
+                            <option value="1">处理中</option>
+                            <option value="2">处理完成</option>
                         </select>
 
                     </div>
@@ -46,21 +49,27 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>微信ID</th>
+                            <th>联系人</th>
                             <th>项目名称</th>
-                            <th>简介</th>
-                            <th>价格</th>
+                            <th>电话</th>
+                            <th>预约时间</th>
+                            <th>推荐人</th>
                             <th>状态</th>
-                            <th>操作</th>
+                            <th>下单时间</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="project:${projects}">
-                            <td th:text="${project.projectId}"></td>
-                            <td th:text="${project.categoryName}"></td>
-                            <td th:text="${#strings.abbreviate(project.shortDesc,20)}" th:title="${project.shortDesc}"></td>
-                            <td th:text="${project.minPrice} + ' - ' + ${project.maxPrice}"></td>
-                            <td th:text="${project.status}"></td>
-                            <td><a href="#">更新</a>&nbsp;<a href="#">查看</a></td>
+                        <tr th:each="order:${list}">
+                            <td th:text="${order.id}"></td>
+                            <td th:text="${order.openId}"></td>
+                            <td th:text="${order.userName}"></td>
+                            <td th:text="${order.projectName}"></td>
+                            <td th:text="${order.phone}"></td>
+                            <td th:text="${order.subscribeDate}"></td>
+                            <td th:text="${order.reference}"></td>
+                            <td th:text="${order.orderStatus}"></td>
+                            <td th:text="${order.createDate}"></td>
                         </tr>
 
                         </tbody>

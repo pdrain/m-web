@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/admin/project")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
