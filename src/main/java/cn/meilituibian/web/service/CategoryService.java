@@ -18,8 +18,8 @@ public class CategoryService {
         return categoryMapper.categoryList();
     }
 
-    public List<Category> getCategoryListByGrade(Long gradeId) {
-        return categoryMapper.getCategoryListByGrade(gradeId);
+    public List<Category> getCategoryListByGrade(Long grade) {
+        return categoryMapper.getCategoryListByGrade(grade);
     }
 
     public List<Category> getUnFinishCateogryList() {

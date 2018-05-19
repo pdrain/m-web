@@ -5,6 +5,7 @@ import cn.meilituibian.web.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class OrderService {
         Map<String, Object> param = new HashMap<>();
         param.put("id", id);
         param.put("status", status);
+        param.put("updateDate", new Date());
         return orderMapper.updateOrderStatus(param);
     }
 }

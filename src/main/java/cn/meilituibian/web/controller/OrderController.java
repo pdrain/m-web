@@ -4,13 +4,12 @@ import cn.meilituibian.web.domain.Order;
 import cn.meilituibian.web.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/orders")
@@ -26,9 +25,12 @@ public class OrderController {
         return view;
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PATCH)
-    public String updateOrderStatus(@PathVariable Long id, @RequestParam int status) {
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> updateOrderStatus(@PathVariable Long id, int status) {
         orderService.updateOrderStatus(id, status);
-        return "";
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+        return map;
     }
 }

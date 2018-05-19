@@ -22,12 +22,12 @@ public class ProjectService {
     }
 
     public void addProject(Project project) {
-        project.setOperation(processJson(project.getOperation()));
+        /*project.setOperation(processJson(project.getOperation()));
         project.setTreatment(processJson(project.getTreatment()));
         project.setRecure(processJson(project.getRecure()));
 
         project.setAdvantage(processList(project.getAdvantage()));
-        project.setDisadvantage(processList(project.getDisadvantage()));
+        project.setDisadvantage(processList(project.getDisadvantage()));*/
         projectMapper.addProject(project);
     }
 

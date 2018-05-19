@@ -57,6 +57,7 @@
                             <th>推荐人</th>
                             <th>状态</th>
                             <th>下单时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,10 +67,14 @@
                             <td th:text="${order.userName}"></td>
                             <td th:text="${order.projectName}"></td>
                             <td th:text="${order.phone}"></td>
-                            <td th:text="${order.subscribeDate}"></td>
+                            <td th:text="${#dates.format(order.subscribeDate,'yyyy-MM-dd')}"></td>
                             <td th:text="${order.reference}"></td>
                             <td th:text="${order.orderStatus}"></td>
-                            <td th:text="${order.createDate}"></td>
+                            <td th:text="${#dates.format(order.createDate,'yyyy-MM-dd')}"></td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm handle" th:if="${order.status == 0}" th:data-id="${order.id}">处理</button>
+                                <button type="button" class="btn btn-default btn-sm finish" th:if="${order.status == 1}" th:data-id="${order.id}">完成</button>
+                            </td>
                         </tr>
 
                         </tbody>
@@ -81,5 +86,6 @@
 </div>
 <!-- Javascripts-->
 <div th:replace="common/foot :: foot"></div>
+<script th:src="@{/js/app/orderList.js}"></script>
 </body>
 </html>

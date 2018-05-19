@@ -25,7 +25,7 @@
     </select>
 
     <select id="getUnFinishCateogryList" resultMap="CategoryResultMap">
-        SELECT * FROM category WHERE STATUS=1 AND grade=3 AND NOT EXISTS (SELECT 1 FROM project WHERE category_id = category.id)
+        SELECT * FROM category WHERE STATUS=1 AND NOT EXISTS (SELECT 1 FROM project WHERE category_id = category.id) and not exists (select parent_id from category)
     </select>
 
     <select id="save" parameterType="Category">
