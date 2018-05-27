@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.meilituibian.web.mapper.ArticleMapper">
+    <select id="articleList" resultType="Article">
+        SELECT id,title,author,source,content,create_date as createDate,status from Article
+        <where>
+            <if test="status != -1">
+                status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into Article(title,author,source,content,create_date,status)values(#{title},#{author},#{source},#{content},#{createDate},#{status})
+    </insert>
+</mapper>

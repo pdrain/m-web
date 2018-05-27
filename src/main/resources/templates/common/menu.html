@@ -10,25 +10,26 @@
     <section class="sidebar">
         <!-- Sidebar Menu-->
         <ul class="sidebar-menu">
-            <li class="active menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
-                <li class="treeview active"  th:if="${param.m ==1}">
-                <li class="treeview active"  th:if="${param.m !=1}">
+            <li class="
+            menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
+                <li class="treeview active" >
                     <a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
+                    <ul class="treeview-menu menu-open">
                         <li class=""><a th:href="@{/admin/category/page(m=1)}"><i class="fa fa-circle-o"></i>增加菜单</a></li>
                         <li class=""><a th:href="@{/admin/project/list(m=1)}"><i class="fa fa-circle-o"></i>项目列表</a></li>
                         <li class=""><a th:href="@{/admin/project/page(m=1)}"><i class="fa fa-circle-o"></i>增加详情</a></li>
                     </ul>
                 </li>
-                <li class="treeview active" th:if="${param.m ==2}">
-                <li class="treeview " th:if="${param.m !=2}">
+                <li class="treeview active" >
                     <a href="#"><i class="fa fa-edit"></i><span>基本信息管理</span><i class="fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li class=""><a th:href="@{/admin/info/page(m=2)}"><i class="fa fa-circle-o"></i>增加基本信息</a></li>
+                        <li class=""><a th:href="@{/admin/articles(m=2)}"><i class="fa fa-circle-o"></i>文章列表</a></li>
+                        <li class=""><a th:href="@{/admin/articles/add-page(m=2)}"><i class="fa fa-circle-o"></i>增加文章</a></li>
                     </ul>
                 </li>
-            <li class="treeview active" th:if="${param.m ==3}">
-            <li class="treeview " th:if="${param.m !=3}">
+
+            <li class="treeview active" >
                 <a href="#"><i class="fa fa-edit"></i><span>订单管理</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li class=""><a th:href="@{/admin/orders}"><i class="fa fa-circle-o"></i>订单查看</a></li>
