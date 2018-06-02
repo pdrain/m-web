@@ -18,6 +18,7 @@ public class Order implements Serializable{
     private Integer status; //-2:取消，-1:冻结,0:待处理,1:处理中，2:处理完成
     private String orderStatus;
     private String reference;
+    private int point;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createDate;
@@ -149,5 +150,13 @@ public class Order implements Serializable{
 
     public void setParentOpenId(String parentOpenId) {
         this.parentOpenId = parentOpenId;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 }
