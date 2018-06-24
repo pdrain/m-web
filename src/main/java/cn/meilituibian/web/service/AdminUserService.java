@@ -25,6 +25,6 @@ public class AdminUserService {
     }
 
     public static void main(String[] args) {
-        System.out.println(DigestUtils.md5DigestAsHex("123456".getBytes()));
+        System.out.println(DigestUtils.md5DigestAsHex("13723484505".getBytes()));
     }
 }

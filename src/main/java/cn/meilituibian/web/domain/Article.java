@@ -8,6 +8,7 @@ public class Article {
     private String author;
     private String source; //原创建，转载
     private String category;
+    private String description; //描述
     private String content;
     private Date createDate;
     private int status;
@@ -83,5 +84,13 @@ public class Article {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

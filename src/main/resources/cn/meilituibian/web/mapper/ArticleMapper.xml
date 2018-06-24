@@ -13,6 +13,6 @@
     </select>
 
     <insert id="add" parameterType="Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        insert into Article(title,author,source,content,create_date,status)values(#{title},#{author},#{source},#{content},#{createDate},#{status})
+        insert into Article(title,author,source,content,create_date,status,description)values(#{title},#{author},#{source},#{content},#{createDate},#{status},#{description})
     </insert>
 </mapper>
