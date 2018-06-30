@@ -24,4 +24,8 @@ public class ArticleService {
         articleMapper.add(article);
         return article.getId();
     }
+
+    public Article findById(Long id) {
+        return articleMapper.findById(id);
+    }
 }

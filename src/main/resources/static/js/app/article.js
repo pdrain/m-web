@@ -27,4 +27,10 @@ $(document).ready(function(){
             });
         }
     });
+
+    //编辑按钮
+    $('button.edit').click(function () {
+        var id = $(this).data('id');
+        window.location.href='/web/admin/articles/views/' + id;
+    });
 });
