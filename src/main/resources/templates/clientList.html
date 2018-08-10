@@ -5,7 +5,7 @@
 
 </head>
 <body class="sidebar-mini fixed">
-<div class="wrapper">
+<div class="wrapper"  id="app">
     <!-- Navbar-->
     <header th:replace="common/header :: header"></header>
     <!-- Side-Nav-->
@@ -14,7 +14,7 @@
     <div class="content-wrapper">
         <div class="page-title">
             <div>
-                <p>业务员列表</p>
+                <p>业务员列表{{msg}}</p>
             </div>
             <div>
                 <ul class="breadcrumb">
@@ -64,6 +64,6 @@
 </div>
 <!-- Javascripts-->
 <div th:replace="common/foot :: foot"></div>
-<script data-main="/web/js/app/userList.js" src="/web/js/lib/requirejs.js"></script>
+<script data-main="/web/js/app/client.js" src="/web/js/require.js"></script>
 </body>
 </html>

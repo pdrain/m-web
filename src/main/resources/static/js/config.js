@@ -1,5 +1,5 @@
 requirejs.config({
-	baseUrl:'/static/js/lib/',
+	baseUrl:'/web/js/lib/',
 	waitSeconds:10,
 	urlArgs:"v=20180101-20181231",
 	paths:{
