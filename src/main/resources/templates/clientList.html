@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
+
+</head>
+<body class="sidebar-mini fixed">
+<div class="wrapper">
+    <!-- Navbar-->
+    <header th:replace="common/header :: header"></header>
+    <!-- Side-Nav-->
+    <aside th:replace="common/menu :: menu"></aside>
+
+    <div class="content-wrapper">
+        <div class="page-title">
+            <div>
+                <p>业务员列表</p>
+            </div>
+            <div>
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home fa-lg"></i></li>
+                    <li>业务管理</li>
+                    <li><a href="#">业务员列表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" id="app">
+            <div class="col-md-12">
+
+                <div class="card">
+                   
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>作者</th>
+                            <th>来源</th>
+                            <th>创建时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="article:${list}">
+                            <td th:text="${article.title}"></td>
+                            <td th:text="${article.author}"></td>
+                            <td th:text="${article.source}"></td>
+                            <td th:text="${#dates.format(article.createDate,'yyyy-MM-dd')}"></td>
+                            <td th:text="${article.status == 0 ? '未发布':'已发布'}"></td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm publish" th:if="${article.status == 0}" th:data-id="${article.id}">发布</button>
+                                <button type="button" class="btn btn-default btn-sm edit" th:if="${article.status == 1}" th:data-id="${article.id}">编辑</button>
+                                <button type="button" class="btn btn-default btn-sm delete" th:data-id="${article.id}">删除</button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascripts-->
+<div th:replace="common/foot :: foot"></div>
+<script data-main="/web/js/app/userList.js" src="/web/js/lib/requirejs.js"></script>
+</body>
+</html>
