@@ -8,5 +8,5 @@ import java.util.List;
 
 @Mapper
 public interface WxUserMapper {
-    List<WxUser> userList(@Param("jobTitle") int jobTitle);
+    List<WxUser> userList(@Param("jobTitle") Integer jobTitle);
 }

@@ -1,5 +1,7 @@
 package cn.meilituibian.web.domain;
 
+import cn.meilituibian.web.common.JobTitleEnum;
+
 import java.util.Date;
 
 public class WxUser {
@@ -243,7 +245,7 @@ public class WxUser {
     }
 
     public String getJotTitleName() {
-        return jotTitleName;
+        return JobTitleEnum.getTitle(this.jobTitle);
     }
 
     public void setJotTitleName(String jotTitleName) {

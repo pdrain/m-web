@@ -28,13 +28,15 @@
             <div class="col-md-12">
 
                 <div class="card">
-                    <form class="form-horizontal" th:action="@{/admin/articles(m=2)}" method="get">
-                        <label class="col-lg-2">文章状态</label>
+                    <form class="form-horizontal" th:action="@{/users/list(m=2)}" method="get">
+                        <label class="col-lg-2">查询条件</label>
                     <div class="col-lg-4">
-                        <select class="form-control" name="status" id="status">
+                        <select class="form-control" name="jobTitle" id="jobTitle">
                             <option value="">所有</option>
-                            <option value="0">未发布</option>
-                            <option value="1">已发布</option>
+                            <option value="0">见习导师</option>
+                            <option value="1">银牌导师</option>
+                            <option value="2">金牌导师</option>
+                            <option value="3">钻石导师</option>
                         </select>
 
                     </div>
@@ -61,7 +63,7 @@
                             <td th:text="${user.numberId}"></td>
                             <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd')}"></td>
                             <td th:text="${user.phone}"></td>
-                            <td th:text="${user.jobTitle}"></td>
+                            <td th:text="${user.jotTitleName}"></td>
 
                         </tr>
 
