@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
 </head>
 <body>
+<!-- Navbar-->
 <!-- Side-Nav-->
 <aside class="main-sidebar hidden-print" th:fragment="menu">
     <section class="sidebar">
@@ -12,6 +13,12 @@
         <ul class="sidebar-menu">
             <li class="
             menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
+             <li class="treeview active" >
+                    <a href="#"><i class="fa fa-edit"></i><span>用户管理</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu menu-open">
+                        <li class=""><a th:href="@{/admin/category/page(m=1)}"><i class="fa fa-circle-o"></i>用户列表</a></li>
+                    </ul>
+                </li>
                 <li class="treeview active" >
                     <a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
                     <ul class="treeview-menu menu-open">
@@ -28,7 +35,12 @@
                         <li class=""><a th:href="@{/admin/articles/add-page(m=2)}"><i class="fa fa-circle-o"></i>增加文章</a></li>
                     </ul>
                 </li>
-
+<li class="treeview active" >
+                    <a href="#"><i class="fa fa-edit"></i><span>业务管理</span><i class="fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu menu-open">
+                        <li class=""><a th:href="@{/admin/client/list}"><i class="fa fa-circle-o"></i>业务员列表</a></li>
+                    </ul>
+                </li>
             <li class="treeview active" >
                 <a href="#"><i class="fa fa-edit"></i><span>订单管理</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">

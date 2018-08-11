@@ -1,0 +1,18 @@
+requirejs.config({
+	baseUrl:'/web/js/lib/',
+	waitSeconds:10,
+	urlArgs:"v=20180101-20181231",
+	paths:{
+		jquery:'jquery-2.1.4.min',
+		vue:'vue',
+		bootstrap:'bootstrap.min',
+		sweetalert:'sweetalert.min',
+		datepicker:'bootstrap-datepicker.min',
+		notify:'bootstrap-notify.min',
+		chart:'chart',
+		dataTables:'dataTables.bootstrap.min',
+		calendar:'fullcalendar.min',
+	},
+	pkgs:{},
+	shim:{}
+});
