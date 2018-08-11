@@ -37,6 +37,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label" for="title">名称</label>
                                             <div class="col-lg-4">
+                                                <input type="hidden" name="id" th:value="${article.id}"/>
                                                 <input class="form-control" name="title" type="text" required th:value="${article.title}">
                                             </div>
                                         </div>
