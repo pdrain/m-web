@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class WxUserCcontroller {
 
-    private static final int SALESMAN = 1;
+    private static final int SALESMAN = -1;
 
     @Autowired
     private WxUserService wxUserService;
