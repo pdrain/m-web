@@ -19,4 +19,8 @@
     <select id="findById" resultType="Article">
          select id,title,author,source,description,content,create_date as createDate,status from Article where id=#{id}
     </select>
+
+    <select id="update" parameterType="Article">
+        update Article set title=#{title},author=#{author},source=#{source},description=#{description},content=#{content},status=#{status} where id=#{id}
+    </select>
 </mapper>

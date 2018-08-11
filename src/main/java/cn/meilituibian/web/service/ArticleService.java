@@ -25,6 +25,11 @@ public class ArticleService {
         return article.getId();
     }
 
+    @Transactional
+    public void update(Article article) {
+        articleMapper.update(article);
+    }
+
     public Article findById(Long id) {
         return articleMapper.findById(id);
     }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface ArticleMapper {
     List<Article> articleList(@Param("status") int status);
     int add(Article article);
+    void update(Article article);
     Article findById(Long id);
 }

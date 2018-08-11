@@ -49,7 +49,6 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>微信ID</th>
                             <th>联系人</th>
                             <th>项目名称</th>
                             <th>电话</th>
@@ -63,7 +62,6 @@
                         <tbody>
                         <tr th:each="order:${list}">
                             <td th:text="${order.id}"></td>
-                            <td th:text="${order.openId}"></td>
                             <td th:text="${order.userName}"></td>
                             <td th:text="${order.projectName}"></td>
                             <td th:text="${order.phone}"></td>

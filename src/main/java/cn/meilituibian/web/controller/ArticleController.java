@@ -39,6 +39,7 @@ public class ArticleController {
 
     @RequestMapping("/update")
     public String update(Article article) {
+        articleService.update(article);
         return "redirect:/admin/articles";
     }
 
