@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.meilituibian.web.mapper.OrderMapper">
+    <resultMap id="orderMap" type="Order">
+        <result column="id" property="id"/>
+        <result column="open_id" property="openId"/>
+        <result column="project_id" property="projectId"/>
+        <result column="project_name" property="projectName"/>
+        <result column="user_name" property="userName"/>
+        <result column="phone" property="phone"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="subscribe_date" property="subscribeDate"/>
+        <result column="parent_open_id" property="parentOpenId"/>
+        <result column="reference" property="reference"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <select id="getOrders" resultMap="orderMap">
+        SELECT a.id,a.open_id,a.project_id,a.project_name,a.user_name, a.phone,a.create_date,a.update_date,a.subscribe_date,a.parent_open_id,
+        b.user_name AS reference ,a.status FROM `order` a LEFT JOIN `order` b ON a.parent_open_id = b.open_id
+        <where>
+            <if test="status != null">
+                a.status = #{status}
+            </if>
+        </where>
+        order by id
+    </select>
+
+    <update id="updateOrderStatus">
+         update `order` set status = #{status},update_date = #{updateDate} where id=#{id}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
+
+</head>
+<body class="sidebar-mini fixed">
+<div class="wrapper">
+    <!-- Navbar-->
+    <header th:replace="common/header :: header"></header>
+    <!-- Side-Nav-->
+    <aside th:replace="common/menu :: menu"></aside>
+
+    <div class="content-wrapper">
+        <div class="page-title">
+            <div>
+                <p>订单列表</p>
+            </div>
+            <div>
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home fa-lg"></i></li>
+                    <li>订单管理</li>
+                    <li><a href="#">订单列表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <form class="form-horizontal" th:action="@{/admin/orders}" method="get">
+                        <label class="col-lg-2">订单状态</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="status" id="status">
+                            <option value="">所有</option>
+                            <option value="-2">已取消</option>
+                            <option value="0">待处理</option>
+                            <option value="1">处理中</option>
+                            <option value="2">处理完成</option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-primary" type="submit" id="search">查询</button>
+                    </div>
+                    </form>
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>联系人</th>
+                            <th>项目名称</th>
+                            <th>电话</th>
+                            <th>预约时间</th>
+                            <th>推荐人</th>
+                            <th>状态</th>
+                            <th>下单时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order:${list}">
+                            <td th:text="${order.id}"></td>
+                            <td th:text="${order.userName}"></td>
+                            <td th:text="${order.projectName}"></td>
+                            <td th:text="${order.phone}"></td>
+                            <td th:text="${#dates.format(order.subscribeDate,'yyyy-MM-dd')}"></td>
+                            <td th:text="${order.reference}"></td>
+                            <td th:text="${order.orderStatus}"></td>
+                            <td th:text="${#dates.format(order.createDate,'yyyy-MM-dd')}"></td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-sm handle" th:if="${order.status == 0}" th:data-id="${order.id}">处理</button>
+                                <button type="button" class="btn btn-default btn-sm finish" th:if="${order.status == 1}" th:data-id="${order.id}">完成</button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascripts-->
+<div th:replace="common/foot :: foot"></div>
+<script th:src="@{/js/app/orderList.js}"></script>
+</body>
+</html>

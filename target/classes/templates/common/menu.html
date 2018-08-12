@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- Navbar-->
+<!-- Side-Nav-->
+<aside class="main-sidebar hidden-print" th:fragment="menu">
+    <section class="sidebar"  id="menu_app">
+        <!-- Sidebar Menu-->
+        <ul class="sidebar-menu">
+
+
+            <li class="menu0"><i class="fa fa-dashboard"></i><p style="color:#fff;">美丽蜕变后台管理-主面板</p></li>
+            <li class="treeview active"  th:each="nav:${menu}" >
+                <a href="#"><i class="fa fa-edit"></i><span th:text = "  ${nav.name}">用户管理</span><i class="fa fa-angle-right"></i></a>
+                <ul class="treeview-menu menu-open">
+                    <li class=""  th:each="child:${nav.childs}" ><a th:href="@{${child.path}}"><i class="fa fa-circle-o"></i><span th:text = "  ${child.name}"></span></a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </section>
+</aside>
+
+</body>
+</html>
