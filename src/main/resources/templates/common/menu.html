@@ -1,53 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
     <meta charset="UTF-8">
 </head>
 <body>
 <!-- Navbar-->
 <!-- Side-Nav-->
 <aside class="main-sidebar hidden-print" th:fragment="menu">
-    <section class="sidebar">
+    <section class="sidebar"  id="menu_app">
         <!-- Sidebar Menu-->
         <ul class="sidebar-menu">
-            <li class="
-            menu0"><i class="fa fa-dashboard"></i><p>美丽蜕变后台管理-主面板</p></li>
-             <li class="treeview active" >
-                    <a href="#"><i class="fa fa-edit"></i><span>用户管理</span><i class="fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu menu-open">
-                        <li class=""><a th:href="@{/admin/category/page(m=1)}"><i class="fa fa-circle-o"></i>用户列表</a></li>
-                    </ul>
-                </li>
-                <li class="treeview active" >
-                    <a href="#"><i class="fa fa-edit"></i><span>菜单管理</span><i class="fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu menu-open">
-                        <li class=""><a th:href="@{/admin/category/page(m=1)}"><i class="fa fa-circle-o"></i>增加菜单</a></li>
-                        <li class=""><a th:href="@{/admin/project/list(m=1)}"><i class="fa fa-circle-o"></i>项目列表</a></li>
-                        <li class=""><a th:href="@{/admin/project/page(m=1)}"><i class="fa fa-circle-o"></i>增加详情</a></li>
-                    </ul>
-                </li>
-                <li class="treeview active" >
-                    <a href="#"><i class="fa fa-edit"></i><span>基本信息管理</span><i class="fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li class=""><a th:href="@{/admin/info/page(m=2)}"><i class="fa fa-circle-o"></i>增加基本信息</a></li>
-                        <li class=""><a th:href="@{/admin/articles(m=2)}"><i class="fa fa-circle-o"></i>文章列表</a></li>
-                        <li class=""><a th:href="@{/admin/articles/add-page(m=2)}"><i class="fa fa-circle-o"></i>增加文章</a></li>
-                    </ul>
-                </li>
-<li class="treeview active" >
-                    <a href="#"><i class="fa fa-edit"></i><span>业务管理</span><i class="fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu menu-open">
-                        <li class=""><a th:href="@{/admin/client/list}"><i class="fa fa-circle-o"></i>业务员列表</a></li>
-                    </ul>
-                </li>
-            <li class="treeview active" >
-                <a href="#"><i class="fa fa-edit"></i><span>订单管理</span><i class="fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li class=""><a th:href="@{/admin/orders}"><i class="fa fa-circle-o"></i>订单查看</a></li>
+
+
+            <li class="menu0"><i class="fa fa-dashboard"></i><p style="color:#fff;">美丽蜕变后台管理-主面板</p></li>
+            <li class="treeview active"  th:each="nav:${menu}" >
+                <a href="#"><i class="fa fa-edit"></i><span th:text = "  ${nav.name}">用户管理</span><i class="fa fa-angle-right"></i></a>
+                <ul class="treeview-menu menu-open">
+                    <li class=""  th:each="child:${nav.childs}" ><a th:href="@{${child.path}}"><i class="fa fa-circle-o"></i><span th:text = "  ${child.name}"></span></a></li>
                 </ul>
             </li>
+
         </ul>
+
     </section>
 </aside>
+
 </body>
 </html>

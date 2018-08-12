@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/project")
-public class ProjectController {
+public class ProjectController  extends BaseController{
     @Autowired
     private ProjectService projectService;
 
@@ -30,20 +32,24 @@ public class ProjectController {
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     private ModelAndView page() {
-        ModelAndView view =  new ModelAndView("projectAdd");
         List<Category> categories = categoryService.getUnFinishCateogryList();
-        view.addObject("categories", categories);
-        return view;
+
+        Map<String,Object> models = new HashMap<>();
+        models.put("categories",categories);
+
+        return this.viewResult("projectAdd",models);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     private ModelAndView list(@RequestParam(value = "categoryId", required = false) Long categoryId, @RequestParam(value = "categoryName", required = false) String categoryName) {
-        ModelAndView view =  new ModelAndView("projectList");
         List<Project> list = projectService.projectList(categoryId);
-        view.addObject("projects", list);
 
         List<Category> secondCategoryList = categoryService.getCategoryListByGrade(2L);
-        view.addObject("categories", secondCategoryList);
-        return view;
+
+        Map<String,Object> models = new HashMap<>();
+        models.put("projects",list);
+        models.put("categories",secondCategoryList);
+
+        return this.viewResult("projectList",models);
     }
 }

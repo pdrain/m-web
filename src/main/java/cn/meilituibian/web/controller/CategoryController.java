@@ -8,43 +8,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/category")
-public class CategoryController {
+public class CategoryController  extends BaseController{
     @Autowired
     private CategoryService categoryService;
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list() {
         List<Category> list = categoryService.categoryList();
-        ModelAndView view = new ModelAndView("categoryList");
-        view.addObject("categories", list);
-        return view;
+        Map<String,Object> models = new HashMap<>();
+        models.put("categories",list);
+
+        return this.viewResult("categoryList",models);
     }
 
     @RequestMapping(value = "page", method = RequestMethod.GET)
     public ModelAndView page() {
         List<Category> list = categoryService.categoryList();
-        ModelAndView view = new ModelAndView("categoryPage");
-        view.addObject("categories", list);
-        return view;
+
+        Map<String,Object> models = new HashMap<>();
+        models.put("categories",list);
+
+        return this.viewResult("categoryPage",models);
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ModelAndView add(Category category) {
-        ModelAndView view = new ModelAndView("categoryPage");
+
+        Map<String,Object> models = new HashMap<>();
         try {
             categoryService.save(category);
             List<Category> list = categoryService.categoryList();
 
-            view.addObject("categories", list);
-            view.addObject("message", "增加成功");
+            models.put("categories",list);
+            models.put("message","增加成功");
         } catch (Exception e) {
-            view.addObject("message", "增加失败");
+            models.put("message", "增加失败");
         }
-        return view;
+
+        return this.viewResult("categoryPage",models);
     }
 
 

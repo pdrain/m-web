@@ -13,16 +13,18 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/orders")
-public class OrderController {
+public class OrderController  extends BaseController{
     @Autowired
     private OrderService orderService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView getOrders(@RequestParam(value = "status", required = false) Integer status) {
-        ModelAndView view = new ModelAndView("orderList");
         List<Order> list = orderService.getOrders(status);
-        view.addObject("list", list);
-        return view;
+
+        Map<String,Object> models = new HashMap<>();
+        models.put("list",list);
+
+        return this.viewResult("orderList",models);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)

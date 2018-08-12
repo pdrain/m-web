@@ -7,11 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin/user")
-public class UserController {
+public class UserController  extends BaseController{
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView userList() {
-        ModelAndView view = new ModelAndView("userList");
-        view.setViewName("userList");
-        return view;
+
+        return this.viewResult("userList");
     }
 }

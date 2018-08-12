@@ -9,26 +9,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/articles")
-public class ArticleController {
+public class ArticleController extends BaseController {
     @Autowired
     private ArticleService articleService;
 
     @RequestMapping("")
     public ModelAndView articleList(@RequestParam(required = false, defaultValue = "-1") int status) {
         List<Article> list = articleService.articleList(status);
-        ModelAndView view = new ModelAndView("articleList");
-        view.addObject("list", list);
-        return view;
+        Map<String,Object> models = new HashMap<>();
+        models.put("list",list);
+
+        return this.viewResult("articleList",models);
     }
 
     @RequestMapping("/add-page")
     public ModelAndView page(Article article) {
-        ModelAndView view = new ModelAndView("articleAdd");
-        return view;
+
+        return this.viewResult("articleAdd");
     }
 
     @RequestMapping("/add")
@@ -45,9 +48,11 @@ public class ArticleController {
 
     @RequestMapping("/views/{id}")
     public ModelAndView view(@PathVariable Long id) {
-        ModelAndView view = new ModelAndView("articleUpdate");
         Article article = articleService.findById(id);
-        view.addObject("article", article);
-        return view;
+
+        Map<String,Object> models = new HashMap<>();
+        models.put("article",article);
+
+        return this.viewResult("articleUpdate",models);
     }
 }

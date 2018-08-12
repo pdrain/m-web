@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/head::head">
 
 </head>
 <body class="sidebar-mini fixed">
-<div class="wrapper"  id="app">
+<div class="wrapper" >
     <!-- Navbar-->
     <header th:replace="common/header :: header"></header>
     <!-- Side-Nav-->
     <aside th:replace="common/menu :: menu"></aside>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper"  id="app">
         <div class="page-title">
             <div>
-                <p>业务员列表{{msg}}</p>
+                <p>业务员列表{{bbb}}</p>
             </div>
             <div>
                 <ul class="breadcrumb">
@@ -53,6 +52,6 @@
 </div>
 <!-- Javascripts-->
 <div th:replace="common/foot :: foot"></div>
-<script data-main="/web/js/app/client.js" src="/web/js/require.js"></script>
+<script data-main="/web/js/app/user.js" src="/web/js/require.js"></script>
 </body>
 </html>
