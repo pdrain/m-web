@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.meilituibian.web.mapper.WxUserMapper">
+     <select id="userList" resultType="WxUser">
+         SELECT user_id as userId,open_id as openId,user_name as userName,nick_name as nickName,shop_name as shopName,contact,
+         create_time as createTime,user_type as userType,contract_no as contractNo,parent,number_id as numberId,phone,`status`,
+         taxpayer_code as taxpayerCode,business_license as businessLicense,job_title as jobTitle,update_time as updateTime FROM wx_user WHERE `status`=1
+          <choose>
+              <when test="jobTitle != null">
+                   AND job_title = #{jobTitle}
+              </when>
+              <otherwise>
+                  AND job_title > -1
+              </otherwise>
+          </choose>
+     </select>
+</mapper>
