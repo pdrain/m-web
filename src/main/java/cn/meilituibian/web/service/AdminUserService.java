@@ -1,11 +1,18 @@
 package cn.meilituibian.web.service;
 
+import cn.meilituibian.web.domain.AdminMenu;
+import cn.meilituibian.web.domain.AdminRole;
 import cn.meilituibian.web.domain.AdminUser;
 import cn.meilituibian.web.domain.MenuInfo;
+import cn.meilituibian.web.mapper.AdminMenuMapper;
+import cn.meilituibian.web.mapper.AdminRoleMapper;
 import cn.meilituibian.web.mapper.AdminUserMapper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -13,6 +20,12 @@ import java.util.*;
 public class AdminUserService {
     @Autowired
     private AdminUserMapper adminUserMapper;
+
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
+
+    @Autowired
+    private AdminMenuMapper adminMenuMapper;
 
     public AdminUser getAdminUser(String user, String password) {
         String md5Password = md5DigestAsHex(password);
@@ -105,5 +118,20 @@ public class AdminUserService {
 
         return menus;
 
+    }
+
+    public List<AdminMenu> list(){
+        List<AdminMenu> menus = adminMenuMapper.list();
+        return menus;
+    }
+
+    public List<AdminMenu>  getMenusByUser(AdminUser adminUser){
+        AdminRole adminRole = adminRoleMapper.getRoleById(adminUser.getRoleId());
+        String menus = adminRole.getMenus();
+        if (StringUtils.isEmpty(menus)) {
+            return Collections.emptyList();
+        }
+        JSONArray menusJson = new JSONArray(menus);
+        return null;
     }
 }
