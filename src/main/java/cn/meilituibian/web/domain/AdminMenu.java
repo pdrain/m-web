@@ -1,12 +1,15 @@
 package cn.meilituibian.web.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminMenu implements Serializable {
     private Long id;
     private String menuName;
     private Long parent;
     private String path;
+    private List<AdminMenu> subMenus = new ArrayList<>();
 
     public AdminMenu(){}
 
@@ -47,5 +50,13 @@ public class AdminMenu implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public List<AdminMenu> getSubMenus() {
+        return subMenus;
+    }
+
+    public void setSubMenus(List<AdminMenu> subMenus) {
+        this.subMenus = subMenus;
     }
 }

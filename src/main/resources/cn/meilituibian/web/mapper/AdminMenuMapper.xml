@@ -4,6 +4,6 @@
 
 <mapper namespace="cn.meilituibian.web.mapper.AdminMenuMapper">
     <select id="list" resultType="AdminMenu">
-        select * from admin_menu
+        select id,menu_name AS menuName,parent,path from admin_menu
     </select>
 </mapper>

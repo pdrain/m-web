@@ -1,6 +1,8 @@
 package cn.meilituibian.web.controller;
 
 import cn.meilituibian.web.common.Constants;
+import cn.meilituibian.web.domain.AdminMenu;
+import cn.meilituibian.web.domain.AdminUser;
 import cn.meilituibian.web.domain.MenuInfo;
 import cn.meilituibian.web.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class BaseController   {
 
         ModelAndView view = new ModelAndView(viewName);
 
-        List<MenuInfo> menus = this.getUserMenu();
+        List<AdminMenu> menus = this.getUserMenu();
         view.addObject("menu", menus);
         return view;
     }
@@ -43,15 +45,15 @@ public class BaseController   {
             view.addObject(entry.getKey(), entry.getValue());
         }
 
-        List<MenuInfo> menus = this.getUserMenu();
+        List<AdminMenu> menus = this.getUserMenu();
         view.addObject("menu", menus);
         return view;
     }
 
 
-    private List<MenuInfo> getUserMenu(){
+    private List<AdminMenu> getUserMenu(){
         HttpSession session = request.getSession();
-        String user =String.valueOf( session.getAttribute(Constants.USER));
-        return this.adminUserService.getMenusByUserName(user);
+        AdminUser user = (AdminUser) session.getAttribute(Constants.USER);
+        return this.adminUserService.getMenusByUser(user);
     }
 }

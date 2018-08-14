@@ -4,6 +4,6 @@
 
 <mapper namespace="cn.meilituibian.web.mapper.AdminRoleMapper">
      <select id="getRoleById" resultType="AdminRole">
-         select * from admin_role where id = #{id}
+         select id,role_name AS roleName,role_code AS roleCode,menus from admin_role where id = #{id}
      </select>
 </mapper>

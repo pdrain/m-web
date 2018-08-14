@@ -15,6 +15,9 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminUserService {
@@ -120,7 +123,7 @@ public class AdminUserService {
 
     }
 
-    public List<AdminMenu> list(){
+    public List<AdminMenu> menuList(){
         List<AdminMenu> menus = adminMenuMapper.list();
         return menus;
     }
@@ -129,9 +132,48 @@ public class AdminUserService {
         AdminRole adminRole = adminRoleMapper.getRoleById(adminUser.getRoleId());
         String menus = adminRole.getMenus();
         if (StringUtils.isEmpty(menus)) {
-            return Collections.emptyList();
+            return menusForAdmin();
         }
+        List<AdminMenu> menuList = menuList();
+        Map<Long, AdminMenu> menuMap = menuList.stream().collect(Collectors.toMap(AdminMenu::getId, Function.identity()));
+        List<AdminMenu> result = new ArrayList<>();
         JSONArray menusJson = new JSONArray(menus);
-        return null;
+        for (int i = 0; i < menusJson.length(); i++) {
+            JSONObject menuObj = menusJson.getJSONObject(i);
+            Long parent = menuObj.getLong("menu");
+            String subStr = menuObj.getString("subs");
+            if (org.apache.commons.lang3.StringUtils.isEmpty(subStr) || parent == null) {
+                continue;
+            }
+            AdminMenu parentMenu = menuMap.get(parent);
+            result.add(parentMenu);
+
+            String[] subMenus = subStr.split(",");
+            for (String id : subMenus) {
+                if (org.apache.commons.lang3.StringUtils.isEmpty(id)) {
+                    continue;
+                }
+                Long subMenuId = Long.parseLong(id);
+                AdminMenu subAdminMenu = menuMap.get(subMenuId);
+                if (subAdminMenu.getParent() == parent) {
+                    parentMenu.getSubMenus().add(subAdminMenu);
+                }
+            }
+        }
+        return result;
+    }
+
+
+    private List<AdminMenu> menusForAdmin() {
+        List<AdminMenu> list = menuList();
+        List<AdminMenu> parents = list.stream().filter(s->s.getParent() == null).collect(Collectors.toList());
+        for (AdminMenu menu : parents) {
+            for (AdminMenu childMenu : list) {
+                if (childMenu.getParent() == menu.getId()) {
+                    menu.getSubMenus().add(childMenu);
+                }
+            }
+        }
+        return parents;
     }
 }

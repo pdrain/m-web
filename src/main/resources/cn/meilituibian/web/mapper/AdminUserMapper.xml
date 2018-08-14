@@ -4,6 +4,6 @@
 
 <mapper namespace="cn.meilituibian.web.mapper.AdminUserMapper">
     <select id="getAdminUserByUser" resultType="AdminUser">
-        select id, user, password, email from Admin_User where user = #{user} and status=1
+        select id, user, password, email, role_id as roleId from Admin_User where user = #{user} and status=1
     </select>
 </mapper>

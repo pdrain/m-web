@@ -14,9 +14,9 @@
 
             <li class="menu0"><i class="fa fa-dashboard"></i><p style="color:#fff;">美丽蜕变后台管理-主面板</p></li>
             <li class="treeview active"  th:each="nav:${menu}" >
-                <a href="#"><i class="fa fa-edit"></i><span th:text = "  ${nav.name}">用户管理</span><i class="fa fa-angle-right"></i></a>
+                <a href="#"><i class="fa fa-edit"></i><span th:text = "  ${nav.menuName}">用户管理</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu menu-open">
-                    <li class=""  th:each="child:${nav.childs}" ><a th:href="@{${child.path}}"><i class="fa fa-circle-o"></i><span th:text = "  ${child.name}"></span></a></li>
+                    <li class=""  th:each="child:${nav.subMenus}" ><a th:href="@{${child.path}}"><i class="fa fa-circle-o"></i><span th:text = "  ${child.menuName}"></span></a></li>
                 </ul>
             </li>
 
