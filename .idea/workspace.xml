@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4a2981a-5a77-4dc4-826d-c3719a89f89f" name="Default Changelist" comment="修改用户管理controller'">
+    <list default="true" id="f4a2981a-5a77-4dc4-826d-c3719a89f89f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/projectList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/projectList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/controller/BaseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/controller/ProjectController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/domain/WxUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/meilituibian/web/domain/WxUser.class" afterDir="false" />
@@ -122,7 +120,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/BaseController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
@@ -134,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+              <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding>
                 <element signature="e#2405#2406#0" expanded="true" />
                 <element signature="e#2451#2452#0" expanded="true" />
@@ -211,13 +209,13 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/ClientsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/OrderController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/filter/SessionFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/service/AdminUserService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/userList.html" />
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/ProjectController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/projectList.html" />
         <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java" />
       </list>
     </option>
   </component>
@@ -322,7 +320,7 @@
     <property name="SearchEverywhereHistoryKey" value="getMenusByUser&#9;PSI&#9;JAVA://cn.meilituibian.web.service.AdminUserService#getMenusByUser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534664939156" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534665008870" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
@@ -366,7 +364,7 @@
       <workItem from="1533990951372" duration="854000" />
       <workItem from="1533991843197" duration="176000" />
       <workItem from="1533992571802" duration="30014000" />
-      <workItem from="1534664034417" duration="903000" />
+      <workItem from="1534664034417" duration="973000" />
     </task>
     <task id="LOCAL-00001" summary="修改用户管理controller'">
       <created>1533996153214</created>
@@ -389,11 +387,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534083352010</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改用户管理controller'">
+      <created>1534664983699</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1534664983700</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34094000" />
+    <option name="totallyTimeSpent" value="34164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
@@ -835,23 +840,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="e#2405#2406#0" expanded="true" />
-            <element signature="e#2451#2452#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/BaseController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/meilituibian/web/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding>
+            <element signature="e#2405#2406#0" expanded="true" />
+            <element signature="e#2451#2452#0" expanded="true" />
           </folding>
         </state>
       </provider>

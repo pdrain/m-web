@@ -19,7 +19,7 @@ import java.util.Map;
 public class IndexController  extends BaseController{
     @RequestMapping("/")
     public ModelAndView index() {
-        return this.viewResult("index");
+        return this.viewResult();
 
     }
 
