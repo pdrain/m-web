@@ -1,9 +1,0 @@
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="cn.meilituibian.web.mapper.AdminUserMapper">
-    <select id="getAdminUserByUser" resultType="AdminUser">
-        select id, user, password, email from Admin_User where user = #{user} and status=1
-    </select>
-</mapper>
