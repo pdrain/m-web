@@ -35,6 +35,7 @@ public class ClientsController  extends BaseController{
 
 	@RequestMapping("/performance/{userId}")
     public ModelAndView performance(@PathVariable("userId") Long userId){
-		return null;
+		ModelAndView view = new ModelAndView("clientPerformance");
+		return view;
     }
 }
