@@ -60,7 +60,7 @@
                             <td th:text="${#strings.abbreviate(project.shortDesc,20)}" th:title="${project.shortDesc}"></td>
                             <td th:text="${project.minPrice} + ' - ' + ${project.maxPrice}"></td>
                             <td th:text="${project.status}"></td>
-                            <td><a href="#">更新</a>&nbsp;<a href="#">查看</a></td>
+                            <td><a th:href="@{/admin/project/page?m=2}">更新</a>&nbsp;<a th:href="@{/admin/project/page?m=3}">查看</a></td>
                         </tr>
 
                         </tbody>

@@ -40,6 +40,8 @@ public class ProjectController  extends BaseController{
         return this.viewResult("projectAdd",models);
     }
 
+
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     private ModelAndView list(@RequestParam(value = "categoryId", required = false) Long categoryId, @RequestParam(value = "categoryName", required = false) String categoryName) {
         List<Project> list = projectService.projectList(categoryId);

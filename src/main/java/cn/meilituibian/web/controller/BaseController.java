@@ -24,6 +24,12 @@ public class BaseController   {
     HttpServletRequest request; //这里可以获取到request
 
 
+    public  ModelAndView viewResult(){
+
+        ModelAndView view = new ModelAndView("index");
+
+        return view;
+    }
 
     public  ModelAndView viewResult(String viewName){
 
