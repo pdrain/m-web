@@ -5,7 +5,8 @@
 
 </head>
 <body class="sidebar-mini fixed">
-<div class="wrapper"  id="app">
+
+<div class="wrapper" id="app">
     <!-- Navbar-->
     <header th:replace="common/header :: header"></header>
     <!-- Side-Nav-->
@@ -14,45 +15,57 @@
     <div class="content-wrapper">
         <div class="page-title">
             <div>
-                <p>业务员列表{{msg}}</p>
+                <p>业务员列表</p>
             </div>
             <div>
                 <ul class="breadcrumb">
                     <li><i class="fa fa-home fa-lg"></i></li>
-                    <li>业务管理</li>
+                    <li>业务员管理</li>
                     <li><a href="#">业务员列表</a></li>
                 </ul>
             </div>
         </div>
-        <div class="row" id="app">
+        <div class="row">
             <div class="col-md-12">
 
                 <div class="card">
-                   
+                    <form class="form-horizontal" th:action="@{/client/list(m=2)}" method="get">
+                        <label class="col-lg-2">查询条件</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" name="jobTitle" id="jobTitle">
+                                <option value="">所有</option>
+                                <option value="0">见习导师</option>
+                                <option value="1">银牌导师</option>
+                                <option value="2">金牌导师</option>
+                                <option value="3">钻石导师</option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn btn-primary" type="submit" id="search">查询</button>
+                        </div>
+                    </form>
 
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>标题</th>
-                            <th>作者</th>
-                            <th>来源</th>
-                            <th>创建时间</th>
-                            <th>状态</th>
-                            <th>操作</th>
+                            <th>姓名</th>
+                            <th>昵称/店名</th>
+                            <th>身份证号</th>
+                            <th>加入时间</th>
+                            <th>联系电话</th>
+                            <th>职位</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="article:${list}">
-                            <td th:text="${article.title}"></td>
-                            <td th:text="${article.author}"></td>
-                            <td th:text="${article.source}"></td>
-                            <td th:text="${#dates.format(article.createDate,'yyyy-MM-dd')}"></td>
-                            <td th:text="${article.status == 0 ? '未发布':'已发布'}"></td>
-                            <td>
-                                <button type="button" class="btn btn-default btn-sm publish" th:if="${article.status == 0}" th:data-id="${article.id}">发布</button>
-                                <button type="button" class="btn btn-default btn-sm edit" th:if="${article.status == 1}" th:data-id="${article.id}">编辑</button>
-                                <button type="button" class="btn btn-default btn-sm delete" th:data-id="${article.id}">删除</button>
-                            </td>
+                        <tr th:each="client:${clients}">
+                            <td th:text="${client.userName}"></td>
+                            <td th:text="${client.nickName}"></td>
+                            <td th:text="${client.numberId}"></td>
+                            <td th:text="${#dates.format(client.createTime,'yyyy-MM-dd')}"></td>
+                            <td th:text="${client.phone}"></td>
+                            <td th:text="${client.jotTitleName}"></td>
+
                         </tr>
 
                         </tbody>
