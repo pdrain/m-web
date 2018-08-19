@@ -9,6 +9,7 @@ import cn.meilituibian.web.service.WxUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,4 +32,9 @@ public class ClientsController  extends BaseController{
 		models.put("clients", clients);
 		return this.viewResult("clientList",models);
 	}
+
+	@RequestMapping("/performance/{userId}")
+    public ModelAndView performance(@PathVariable("userId") Long userId){
+
+    }
 }
