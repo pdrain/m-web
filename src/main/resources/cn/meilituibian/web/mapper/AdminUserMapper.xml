@@ -21,4 +21,8 @@ left join admin_role b on b.id = a.role_id
     <insert id="addNewAdminUser"  parameterType="AdminUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into admin_user (user,password,email,role_id,user_name) values (#{user},#{password},#{email},#{roleId},#{userName})
     </insert>
+
+    <update id="updateAdminUser"   parameterType="AdminUser" >
+        update  admin_user set user=#{user},email=#{email},role_id=#{roleId},user_name=#{userName} where id=#{id}
+    </update>
 </mapper>

@@ -33,11 +33,11 @@
                             <label class="control-label" >登录账号：</label>
                             <input  class="form-control" type="text" v-model="adminUser.user" required/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="id==''">
                             <label class="control-label" >登录密码：</label>
                             <input  class="form-control" type="password" v-model="adminUser.password" required/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="id==''">
                             <label class="control-label" >重复密码：</label>
                             <input  class="form-control" type="password" v-model="adminUser.password1" required/>
                         </div>

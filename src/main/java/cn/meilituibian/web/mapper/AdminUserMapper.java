@@ -14,4 +14,6 @@ public interface AdminUserMapper {
     List<AdminUser> getAllAdminUser(String user, Integer roleId);
 
     void addNewAdminUser(AdminUser adminUser);
+
+    void updateAdminUser(AdminUser adminUser);
 }

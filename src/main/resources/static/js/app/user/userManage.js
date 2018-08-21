@@ -46,7 +46,12 @@ define(['vue','utils'],function (vue,utils) {
                 var _url= '/admin/user/add_admin_user';
                 utils.post(_url,_this.adminUser,function (res) {
                     alert('保存成功！');
-                    _this.reset();
+                    if(_this.id){
+                        window.location.href='/web/admin/user/list';
+                    }else{
+                        _this.reset();
+                    }
+
                 });
             },
             savePreCheck:function () {
@@ -55,13 +60,15 @@ define(['vue','utils'],function (vue,utils) {
                     alert('登录账号不能为空！');
                     return false;
                 }
-                if(!_this.adminUser.password){
-                    alert('密码不能为空！');
-                    return false;
-                }
-                if(_this.adminUser.password !=_this.adminUser.password1){
-                    alert('两次密码输入不一致，请重新输入！');
-                    return false;
+                if(!this.id) {
+                    if (!_this.adminUser.password) {
+                        alert('密码不能为空！');
+                        return false;
+                    }
+                    if (_this.adminUser.password != _this.adminUser.password1) {
+                        alert('两次密码输入不一致，请重新输入！');
+                        return false;
+                    }
                 }
                 if(!_this.adminUser.userName){
                     alert('用户名不能为空！');

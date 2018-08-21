@@ -212,4 +212,13 @@ public class AdminUserService {
             throw ex;
         }
     }
+
+    public  void updateAdminUser(AdminUser adminUser){
+        try{
+            this.adminUserMapper.updateAdminUser(adminUser);
+        }catch (Exception ex){
+            // TODO
+            throw ex;
+        }
+    }
 }

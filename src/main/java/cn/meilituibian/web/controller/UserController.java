@@ -57,7 +57,13 @@ public class UserController  extends BaseController{
     public ResultObject addAdminUser(@RequestBody AddAdminUserForm addAdminUserForm){
         ResultObject result = new ResultObject();
         try {
-            this.adminUserService.addNewAdminUser(addAdminUserForm);
+            Long userId = addAdminUserForm.getId();
+            if(userId.equals(0)){
+                this.adminUserService.addNewAdminUser(addAdminUserForm);
+            }else{
+                this.adminUserService.updateAdminUser(addAdminUserForm);
+            }
+
             result.setCode(ResultStatus.SUCESS);
         } catch (Exception ex) {
             result.setCode(ResultStatus.ERROR);
