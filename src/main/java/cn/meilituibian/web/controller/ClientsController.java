@@ -33,8 +33,8 @@ public class ClientsController{
 		return view;
 	}
 
-	@RequestMapping("/performance/{userId}")
-	public ModelAndView performance(@PathVariable("userId") Long userId){
+	@RequestMapping("/performance")
+	public ModelAndView performance(){
 		ModelAndView view = new ModelAndView("clientPerformance");
 		return view;
 	}

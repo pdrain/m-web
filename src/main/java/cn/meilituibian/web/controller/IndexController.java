@@ -35,11 +35,10 @@ public class IndexController {
         HttpSession session = request.getSession();
         Object captchaCode = session.getAttribute(Constants.CAPTCHA_CODE);
 
-        Map<String,Object> models = new HashMap<>();
-        String viewName="index";
         view.setViewName("index");
         if (captchaCode == null || !code.equalsIgnoreCase(captchaCode.toString())) {
             view.addObject("message", "请输入正确的验证码");
+            return view;
         }
         AdminUser adminUser = adminUserService.getAdminUser(user, password);
         if (adminUser == null) {
