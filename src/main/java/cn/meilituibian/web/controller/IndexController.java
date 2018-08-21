@@ -1,6 +1,7 @@
 package cn.meilituibian.web.controller;
 
 import cn.meilituibian.web.common.Constants;
+import cn.meilituibian.web.domain.AdminMenu;
 import cn.meilituibian.web.domain.AdminUser;
 import cn.meilituibian.web.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,16 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
-public class IndexController  extends BaseController{
+public class IndexController {
+
     @RequestMapping("/")
     public ModelAndView index() {
-        return this.viewResult();
-
+        ModelAndView view = new ModelAndView("index");
+        return view;
     }
 
     @Autowired
@@ -34,41 +37,34 @@ public class IndexController  extends BaseController{
 
         Map<String,Object> models = new HashMap<>();
         String viewName="index";
-        //view.setViewName("index");
+        view.setViewName("index");
         if (captchaCode == null || !code.equalsIgnoreCase(captchaCode.toString())) {
-            //view.addObject("message", "请输入正确的验证码");
-            //viewName="index";
-            models.put("message","请输入正确的验证码");
+            view.addObject("message", "请输入正确的验证码");
         }
         AdminUser adminUser = adminUserService.getAdminUser(user, password);
         if (adminUser == null) {
-            //view.addObject("message", "登录失败");
-            //return view;
-            models.put("message","登录失败");
-
+            view.addObject("message", "登录失败");
+            return view;
         }
         else{
             session.setAttribute(Constants.USER, adminUser);
-            viewName="main";
+            List<AdminMenu> menus = adminUserService.getMenusByUser(adminUser);
+            session.setAttribute("menus", menus);
+            view.setViewName("main");
         }
-
-        //view.setViewName("main");
-        //return view;
-
-
-        //models.put("article",article);
-
-        return this.viewResult(viewName,models);
+        return view;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("index");
         request.getSession().invalidate();
-        return this.viewResult("index");
+        return view;
     }
 
     @RequestMapping("/admin/main")
     public ModelAndView main(HttpServletRequest request) {
-        return this.viewResult("main");
+        ModelAndView view = new ModelAndView("main");
+        return view;
     }
 }

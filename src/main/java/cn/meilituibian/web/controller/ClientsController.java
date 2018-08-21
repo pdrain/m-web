@@ -18,8 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.meilituibian.web.domain.Category;
 
 @Controller
-@RequestMapping("/admin/client")
-public class ClientsController  extends BaseController{
+@RequestMapping("/admin/clients")
+public class ClientsController{
 	private static final int SALESMAN = -1;
 
 	@Autowired
@@ -28,9 +28,9 @@ public class ClientsController  extends BaseController{
 	@RequestMapping("/list")
 	public ModelAndView userList(@RequestParam(value = "jobTitle", required = false) String jobTitle) {
 		List<WxUser> clients = wxUserService.userList(StringUtils.isEmpty(jobTitle) ? null : Integer.parseInt(jobTitle));
-		Map<String,Object> models = new HashMap<>();
-		models.put("clients", clients);
-		return this.viewResult("clientList",models);
+		ModelAndView view = new ModelAndView("clientList");
+		view.addObject("clients", clients);
+		return view;
 	}
 
 	@RequestMapping("/performance/{userId}")

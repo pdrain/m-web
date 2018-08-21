@@ -14,11 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-public class BaseController   {
 
-    @Autowired
-    private AdminUserService   adminUserService;
+public class BaseController{
 
     @Autowired
     HttpServletRequest request; //这里可以获取到request
@@ -32,11 +29,7 @@ public class BaseController   {
     }
 
     public  ModelAndView viewResult(String viewName){
-
         ModelAndView view = new ModelAndView(viewName);
-
-        List<AdminMenu> menus = this.getUserMenu();
-        view.addObject("menu", menus);
         return view;
     }
 
@@ -51,15 +44,6 @@ public class BaseController   {
             view.addObject(entry.getKey(), entry.getValue());
         }
 
-        List<AdminMenu> menus = this.getUserMenu();
-        view.addObject("menu", menus);
         return view;
-    }
-
-
-    private List<AdminMenu> getUserMenu(){
-        HttpSession session = request.getSession();
-        AdminUser user = (AdminUser) session.getAttribute(Constants.USER);
-        return this.adminUserService.getMenusByUser(user);
     }
 }
