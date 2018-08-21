@@ -1,6 +1,6 @@
 package cn.meilituibian.web.domain;
 
-public class BaseResult {
+public class ResultObject {
     public  String code;
     public  String msg;
     public  Object result;

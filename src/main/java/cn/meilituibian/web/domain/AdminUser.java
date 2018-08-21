@@ -8,6 +8,8 @@ public class AdminUser implements Serializable{
     private String email;
     private String password;
     private Long roleId;
+    private String roleName;
+    private String userName;
 
     public Long getId() {
         return id;
@@ -47,5 +49,21 @@ public class AdminUser implements Serializable{
 
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

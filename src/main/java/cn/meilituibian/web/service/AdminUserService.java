@@ -176,4 +176,40 @@ public class AdminUserService {
         }
         return parents;
     }
+
+    public  AdminUser getAdminUserById(Integer id){
+        AdminUser  user= null;
+        try{
+            user = this.adminUserMapper.getAdminUserById(id);
+        }catch (Exception ex){
+            // TODO
+            throw ex;
+        }
+
+        return user;
+    }
+
+    public List<AdminUser> getAllAdminUser(String user,Integer roleId){
+        List<AdminUser>  userList= new ArrayList<>();
+        try{
+            userList = this.adminUserMapper.getAllAdminUser(user,roleId);
+        }catch (Exception ex){
+            // TODO
+            throw ex;
+        }
+
+        return userList;
+    }
+
+
+    public  void addNewAdminUser(AdminUser adminUser){
+        try{
+            String md5Password = this.md5DigestAsHex(adminUser.getPassword());
+            adminUser.setPassword(md5Password);
+            this.adminUserMapper.addNewAdminUser(adminUser);
+        }catch (Exception ex){
+            // TODO
+            throw ex;
+        }
+    }
 }

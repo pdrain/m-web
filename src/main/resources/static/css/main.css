@@ -15516,3 +15516,8 @@ be a descendant of the grid when it is being dragged.
 .user .user-settings label {
   color: #666;
 }
+
+.input-group-addon label{
+  display: block;
+  width: 80px;
+}

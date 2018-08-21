@@ -6,4 +6,19 @@
     <select id="getAdminUserByUser" resultType="AdminUser">
         select id, user, password, email, role_id as roleId from Admin_User where user = #{user} and status=1
     </select>
+
+    <select id="getAdminUserById" resultType="AdminUser">
+        select id, user, password, email, role_id as roleId from Admin_User where id = #{id}
+    </select>
+
+    <select id="getAllAdminUser" resultType="AdminUser">
+
+        SELECT a.id, a.user, a.password, a.email, a.role_id  as roleId, b.role_name as roleName,a.user_name as userName FROM admin_user a
+left join admin_role b on b.id = a.role_id
+
+    </select>
+
+    <insert id="addNewAdminUser"  parameterType="AdminUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into admin_user (user,password,email,role_id,user_name) values (#{user},#{password},#{email},#{roleId},#{userName})
+    </insert>
 </mapper>

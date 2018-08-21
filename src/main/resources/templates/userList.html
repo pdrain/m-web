@@ -13,16 +13,46 @@
     <div class="content-wrapper"  id="app">
         <div class="page-title">
             <div>
-                <p>业务员列表{{bbb}}</p>
+                <p>系统用户列表</p>
             </div>
             <div>
                 <ul class="breadcrumb">
                     <li><i class="fa fa-home fa-lg"></i></li>
-                    <li>业务管理</li>
-                    <li><a href="#">业务员列表</a></li>
+                    <li>系统用户管理</li>
+                    <li><a href="#">系统用户列表</a></li>
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+            <fieldset>
+                <legend>用户查询</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" >登录账号：</label>
+                    <input type="text" v-model="queryParam.user" required/>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" >姓名：</label>
+                    <input type="text"  v-model="queryParam.userName"  required/>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" >角色：</label>
+                    <select  v-model="queryParam.roleId" >
+                        <option value="1">超级管理员</option>
+                        <option value="2">管理员</option>
+                        <option value="3">跟单</option>
+                        <option value="4">财务</option>
+
+                    </select>
+                </div>
+            </fieldset>
+                </div>
+            </div>
+
+        </div>
+
         <div class="row">
             <div class="col-md-12">
 
@@ -32,16 +62,22 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>标题</th>
-                            <th>作者</th>
-                            <th>来源</th>
-                            <th>创建时间</th>
-                            <th>状态</th>
+                            <th>账号</th>
+                            <th>角色</th>
+                            <th>姓名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
+                            <tr v-for="(item,index) in userList">
 
+                                <td>{{item.user}}</td>
+                                <td>{{item.roleName}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>
+                                    <a :href="'add-and-edit/?id='+item.id">编辑</a>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>

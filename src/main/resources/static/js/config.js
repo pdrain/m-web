@@ -12,6 +12,7 @@ requirejs.config({
 		chart:'chart',
 		dataTables:'dataTables.bootstrap.min',
 		calendar:'fullcalendar.min',
+        utils:'utils',
 	},
 	pkgs:{},
 	shim:{}
