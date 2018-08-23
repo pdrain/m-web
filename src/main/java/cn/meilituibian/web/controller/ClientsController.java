@@ -38,4 +38,12 @@ public class ClientsController{
 		ModelAndView view = new ModelAndView("clientPerformance");
 		return view;
 	}
+
+	@RequestMapping("/view/{id}")
+	public ModelAndView view(@PathVariable Long id){
+		ModelAndView view = new ModelAndView("clientUpdate");
+		WxUser wxUser = wxUserService.getWxUserById(id);
+		view.addObject("user", wxUser);
+		return view;
+	}
 }

@@ -16,4 +16,8 @@ public class WxUserService {
     public List<WxUser> userList(Integer jobTitle) {
         return wxUserMapper.userList(jobTitle);
     }
+
+    public WxUser getWxUserById(Long userId) {
+        return wxUserMapper.getWxUserById(userId);
+    }
 }
