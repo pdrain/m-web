@@ -1,14 +1,14 @@
 define(['vue','utils'],function (vue,utils) {
-    "use strict"
+    var _queryParamTemp={
+        user:'',
+            userName:'',
+        roleId:1
+    }
     new vue({
         el:'#app',
         data:function () {
             return{
-                queryParam:{
-                    user:'',
-                    userName:'',
-                    roleId:1
-                },
+                queryParam:eval('('+JSON.stringify(_queryParamTemp)+')'),
                 userList:[]
             }
         },
@@ -24,8 +24,11 @@ define(['vue','utils'],function (vue,utils) {
                     _this.userList = res.result;
                 })
             },
-            goDetail:function (id) {
-                window.location.href='/web/admin/user/add-and-edit?id='+id;
+            query:function () {
+                this.getUserList();
+            },
+            reset:function () {
+                this. queryParam=eval('('+JSON.stringify(_queryParamTemp)+')');
             }
         }
     });

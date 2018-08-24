@@ -13939,6 +13939,10 @@ be a descendant of the grid when it is being dragged.
   z-index: 1030;
 }
 
+.mt-5{
+  margin-top:5px;
+}
+
 .main-header > .navbar {
   margin-bottom: 0;
   margin-left: 230px;
@@ -15520,4 +15524,95 @@ be a descendant of the grid when it is being dragged.
 .input-group-addon label{
   display: block;
   width: 80px;
+}
+
+
+.edit-dialog{
+  display: block;
+  width: 100%;
+  position: absolute;
+
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 99999;
+  display:none;
+
+}
+
+.edit-dialog .mask{
+  width:100%;
+  height:100%;
+  opacity: 0.3;
+  background: #666;
+
+}
+
+
+.edit-dialog .content-container{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0px;
+}
+.edit-dialog .content-container .content{
+  width: 500px;
+  min-height:350px;
+  height:auto;
+  background: #fff;
+  border:1px #999999 solid;
+  border-radius: 3px;
+  padding:8px;
+  margin: auto;
+  margin-top:150px;
+}
+
+.edit-dialog .content-container .content table{
+  width: 100%;
+}
+
+.edit-dialog .content-container .content table img{
+  width:300px;
+  height: 100px;
+  border:1px #ccc solid;
+  display:block;
+}
+.edit-dialog .content-container .content table input[type='text']{
+  width:100%;
+  height: 35px;
+  display:block;
+}
+.edit-dialog  .form-ul{
+  width:100%;
+  border:1px #fff solid;
+  border-radius: 3px;
+  border-bottom: 1px #ccc dashed;
+  height: 155px !important;
+
+}
+
+.edit-dialog  .form-ul:last-child{
+  border: 0px;
+}
+
+.edit-dialog  .form-li{
+  padding:5px;
+  min-height:35px;
+  height:auto;
+  margin-top: 3px !important;
+  position: relative;
+
+}
+
+.edit-dialog  .form-li .remove{
+  position: absolute;
+  width:25px;
+  height: 25px;
+  border-radius:12.5px;
+  background: #ccc;
+  color:#fff;
+  text-align: center;
+  line-height: 25px;
+  top: 15px;
+  left: 270px;
 }

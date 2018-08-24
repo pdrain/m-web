@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
+
+</head>
+<body class="sidebar-mini fixed">
+<div class="wrapper">
+    <!-- Navbar-->
+    <header th:replace="common/header :: header"></header>
+    <!-- Side-Nav-->
+    <aside th:replace="common/menu :: menu"></aside>
+
+    <div class="content-wrapper" id="app">
+        <div id="edit-form" class="edit-dialog">
+            <div class="mask"></div>
+            <a>X</a>
+            <div class="content-container">
+                <div class="content" style="width:800px;">
+                    <table>
+                        <tr>
+                            <td style="width:100px">
+                                选择广告位
+                            </td>
+                            <td>
+                                <select class="form-control">
+                                    <option value="">--选择广告位--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:100px">
+                                选择图片
+                            </td>
+                            <td>
+                               <div class="form-ul" v-for="(item,index) in editData.imgs">
+                                   <div class="form-li mt-5">
+                                       <a class="remove"  v-if="item.path">X</a>
+                                       <img :src="item.path" v-if="item.path"/>
+                                       <img src="../../images/add.png" v-if="!item.path" @click="selectImg('upload_img_'+index)"/>
+
+                                       <input type="file" :id="'upload_img_'+index" style="display:none;"/>
+                                   </div>
+                                   <div class="form-li mt-5">
+                                       <input class="form-control" type="text" placeholder="请输入跳转地址" v-model="item.link"/>
+                                   </div>
+                               </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:100px">
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a @click="addAdvImg">+ 添加广告图片 </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="form-group">
+                        <button class="btn btn-default" @click="saveAdv">保存</button>
+                        <button class="btn btn-default" @click="cancelAdv">取消</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="page-title">
+            <div>
+                <p>广告列表</p>
+            </div>
+            <div>
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home fa-lg"></i></li>
+                    <li>广告管理</li>
+                    <li><a href="#">广告列表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-default" @click="newAdv">新增广告</button>
+                </div>
+                <div class="card">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>广告代码</th>
+                            <th>广告位名称</th>
+                            <th>图片</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in list">
+                            <td>广告代码</td>
+                            <td>广告位名称</td>
+                            <td>图片</td>
+                            <td>状态</td>
+                            <td>操作</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/foot :: foot"></div>
+<script data-main="/web/js/app/advertisment.js" src="/web/js/require.js"></script>
+</body>
+</html>

@@ -13,6 +13,7 @@ requirejs.config({
 		dataTables:'dataTables.bootstrap.min',
 		calendar:'fullcalendar.min',
         utils:'utils',
+        fileUpload:'fileUpload',
 	},
 	pkgs:{},
 	shim:{}
