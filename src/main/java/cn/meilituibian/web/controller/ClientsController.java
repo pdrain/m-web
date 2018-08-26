@@ -46,4 +46,9 @@ public class ClientsController{
 		view.addObject("user", wxUser);
 		return view;
 	}
+
+	@RequestMapping("/update")
+	public ModelAndView update(WxUser wxUser) {
+		return null;
+	}
 }

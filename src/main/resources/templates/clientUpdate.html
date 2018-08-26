@@ -31,17 +31,75 @@
 
                                 <form class="form-horizontal" th:action="@{/admin/clients/update}" method="post">
                                     <fieldset>
+                                        <input type="hidden" th:value="${user.status}" name="status">
+                                        <input type="hidden" th:value="${user.userType}" name="userType">
+                                        <input type="hidden" th:value="${user.jobTitle}" name="jobTitle">
                                         <legend>编辑业务员信息</legend>
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label" for="name">姓名</label>
                                             <div class="col-lg-4">
-                                                <span th:text="${user.userName}"/>
+                                                <input type="text" th:value="${user.userName}" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="name">姓名</label>
+                                            <label class="col-lg-2 control-label" for="nickName">昵称</label>
                                             <div class="col-lg-4">
-                                                <span th:text="${user.userName}"/>
+                                                <input type="text" disabled th:value="${user.nickName}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="shopName">店名</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" disabled th:value="${user.shopName}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="contact">联系人</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" disabled th:value="${user.contact}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="userType">用户类型</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" disabled th:value="${user.userTypeName}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="jobTitle">头衔</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" disabled th:value="${user.jotTitleName}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="contractNo">合同号</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="contractNo" th:value="${user.contractNo}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="numberId">身份证号</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="numberId" th:value="${user.numberId}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="phone">电话</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="phone" th:value="${user.phone}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="address">地址</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="address" th:value="${user.address}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="businessLicense">营业执照</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="businessLicense" th:value="${user.businessLicense}">
                                             </div>
                                         </div>
 
