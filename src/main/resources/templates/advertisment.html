@@ -22,8 +22,14 @@
                                 选择广告位
                             </td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" v-model="editData.code">
                                     <option value="">--选择广告位--</option>
+                                    <option value="1001">首页顶部轮播广告</option>
+                                    <option value="1002">首页底部广告</option>
+                                    <option value="2001">产品列表页顶部轮播广告</option>
+                                    <option value="2002">产品列表页底部广告</option>
+                                    <option value="3001">产品详情页顶部轮播广告</option>
+                                    <option value="3002">产品详情页底部广告</option>
                                 </select>
                             </td>
                         </tr>
@@ -34,9 +40,9 @@
                             <td>
                                <div class="form-ul" v-for="(item,index) in editData.imgs">
                                    <div class="form-li mt-5">
-                                       <a class="remove"  v-if="item.path">X</a>
+                                       <a class="remove"  v-if="item.path" @click="removeImg(item)">X</a>
                                        <img :src="item.path" v-if="item.path"/>
-                                       <img src="../../images/add.png" v-if="!item.path" @click="selectImg('upload_img_'+index)"/>
+                                       <img src="../../images/add.png" v-if="!item.path" @click="selectImg(item,'upload_img_'+index)"/>
 
                                        <input type="file" :id="'upload_img_'+index" style="display:none;"/>
                                    </div>
@@ -95,11 +101,13 @@
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in list">
-                            <td>广告代码</td>
-                            <td>广告位名称</td>
-                            <td>图片</td>
+                            <td>{{item.code}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.path}}</td>
                             <td>状态</td>
-                            <td>操作</td>
+                            <td>
+                                <a @click="editAdv()">编辑</a>
+                            </td>
                         </tr>
 
                         </tbody>

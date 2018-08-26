@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdvertismentService {
@@ -39,7 +41,8 @@ public class AdvertismentService {
     public List<Advertisment> getAdvertisment(Advertisment advertisment) {
         List<Advertisment> result = new ArrayList<>();
         try {
-            this.advertismentMapper.getAdvertisment(advertisment);
+            result = this.advertismentMapper.getAdvertisment(advertisment);
+
         } catch (Exception e) {
             //TODO
             throw e;
@@ -84,5 +87,27 @@ public class AdvertismentService {
         }
 
         return fileName;
+    }
+
+    public void removeImg(String imgName) {
+        String filePath = fileUploadPath + "/uploadFile/" + imgName;
+
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+
+    }
+
+    public void saveAdvs(List<Advertisment> advertismentList) {
+        try {
+            this.advertismentMapper.addAdvertismentList(advertismentList);
+        } catch (Exception ex) {
+            for(Advertisment item:advertismentList){
+                this.removeImg(item.getPath());
+            }
+
+            throw ex;
+        }
     }
 }

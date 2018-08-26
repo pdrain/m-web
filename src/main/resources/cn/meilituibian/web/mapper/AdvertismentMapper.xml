@@ -11,12 +11,12 @@
         update advertisment set path=#{path},status=#{status} where id=#{id}
     </update>
 
-    <select id="getAdvertisment" resultType="Advertisment">
+    <select id="getAdvertisment" resultType="Advertisment" parameterType="Advertisment">
         select a.*,b.name from advertisment  a
         left join adv_position b on b.code=a.code
         where 1=1
-        <if test="code!=null">
-             and code=#{code}
+        <if test="code!=null and code!=''">
+            and code='#{code}'
         </if>
         <if test="status!=null">
             and status=#{status}
@@ -26,4 +26,21 @@
     <select id="getAdvertismentById" resultType="Advertisment">
         select * from advertisment where 1=1 and id=#{id}
     </select>
+
+    <insert id="addAdvertismentList" parameterType="java.util.List">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into advertisment
+        (code,path,status,link)
+        values
+        <foreach collection="list" item="advertisment" index="index" separator=",">
+            (
+            #{advertisment.code},
+            #{advertisment.path},
+            #{advertisment.status},
+            #{advertisment.link}
+            )
+        </foreach>
+    </insert>
 </mapper>

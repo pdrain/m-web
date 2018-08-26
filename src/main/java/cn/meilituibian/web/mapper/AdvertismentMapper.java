@@ -15,4 +15,6 @@ public interface AdvertismentMapper {
 
     Advertisment getAdvertismentById(Integer id);
 
+    Integer  addAdvertismentList(List<Advertisment> advertismentList);
+
 }
