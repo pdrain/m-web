@@ -48,7 +48,8 @@ public class ClientsController{
 	}
 
 	@RequestMapping("/update")
-	public ModelAndView update(WxUser wxUser) {
-		return null;
+	public String update(WxUser wxUser) {
+		wxUserService.update(wxUser);
+		return "redirect:list";
 	}
 }

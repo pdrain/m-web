@@ -10,4 +10,5 @@ import java.util.List;
 public interface WxUserMapper {
     List<WxUser> userList(@Param("jobTitle") Integer jobTitle);
     WxUser getWxUserById(@Param("userId") Long userId);
+    void update(WxUser wxUser);
 }
