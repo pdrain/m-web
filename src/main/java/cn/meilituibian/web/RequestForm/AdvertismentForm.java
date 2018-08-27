@@ -5,10 +5,19 @@ import cn.meilituibian.web.domain.Advertisment;
 import java.util.List;
 
 public class AdvertismentForm  {
+    private Integer id;
     private String path;
     private String code;
+    private String link;
     private Integer status;
-    private List<Advertisment> advertismentList;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPath() {
         return path;
@@ -18,12 +27,12 @@ public class AdvertismentForm  {
         this.path = path;
     }
 
-    public List<Advertisment> getAdvertismentList() {
-        return advertismentList;
+    public String getLink() {
+        return link;
     }
 
-    public void setAdvertismentList(List<Advertisment> advertismentList) {
-        this.advertismentList = advertismentList;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getCode() {

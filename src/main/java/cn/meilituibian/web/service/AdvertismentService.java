@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class AdvertismentService {
@@ -38,11 +40,23 @@ public class AdvertismentService {
         }
     }
 
+    public Advertisment getAdvertismentDetail(Integer id) {
+        Advertisment result = new Advertisment();
+        try {
+            result = this.advertismentMapper.getAdvertismentById(id);
+        } catch (Exception ex) {
+            //TODO
+            throw ex;
+        }
+        return result;
+    }
+
     public List<Advertisment> getAdvertisment(Advertisment advertisment) {
         List<Advertisment> result = new ArrayList<>();
         try {
             result = this.advertismentMapper.getAdvertisment(advertisment);
 
+
         } catch (Exception e) {
             //TODO
             throw e;
@@ -50,16 +64,16 @@ public class AdvertismentService {
         return result;
     }
 
-    public Advertisment getAdvertismentById(Integer id) {
-        Advertisment result = null;
-        try {
-            this.advertismentMapper.getAdvertismentById(id);
-        } catch (Exception e) {
-            //TODO
-            throw e;
-        }
-        return result;
-    }
+//    public Advertisment getAdvertismentById(Integer id) {
+//        Advertisment result = null;
+//        try {
+//            this.advertismentMapper.getAdvertismentById(id);
+//        } catch (Exception e) {
+//            //TODO
+//            throw e;
+//        }
+//        return result;
+//    }
 
     public String saveImgOnDisk(String imgName, byte[] filedata) {
         String fileName = "";
@@ -99,14 +113,61 @@ public class AdvertismentService {
 
     }
 
-    public void saveAdvs(List<Advertisment> advertismentList) {
+    public void removeImg(Integer id, String imgName) {
+        this.removeImg(imgName);
+
+        if (id > 0) {
+            this.advertismentMapper.removeAdvertisment(id);
+        }
+
+    }
+
+    public void saveAdvs(Advertisment advertisment) {
         try {
-            this.advertismentMapper.addAdvertismentList(advertismentList);
-        } catch (Exception ex) {
-            for(Advertisment item:advertismentList){
-                this.removeImg(item.getPath());
+
+            if (advertisment.getId() > 0) {
+                this.advertismentMapper.updateAdvertisment(advertisment);
+            } else {
+                this.advertismentMapper.addNewAdvertisment(advertisment);
             }
 
+        } catch (Exception ex) {
+
+            if (advertisment.getId() == 0) {
+                this.removeImg(advertisment.getPath());
+            }
+
+            throw ex;
+        }
+    }
+
+    public void onLineAdvertisment(Integer id) {
+        try {
+            Map<String,Object> args = new HashMap<>();
+            args.put("id",id);
+            args.put("status",1);
+            this.advertismentMapper.updateAdvertisMentStatus(args);
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    public void offLineAdvertisment(Integer id) {
+        try {
+            Map<String,Object> args = new HashMap<>();
+            args.put("id",id);
+            args.put("status",0);
+            this.advertismentMapper.updateAdvertisMentStatus(args);
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    public void deleteAdvertisment(Integer id,String path) {
+        try {
+            this.advertismentMapper.deleteAdvertisment(id);
+            this.removeImg(path);
+        } catch (Exception ex) {
             throw ex;
         }
     }

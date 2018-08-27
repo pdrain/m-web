@@ -38,27 +38,18 @@
                                 选择图片
                             </td>
                             <td>
-                               <div class="form-ul" v-for="(item,index) in editData.imgs">
+                               <div class="form-ul">
                                    <div class="form-li mt-5">
-                                       <a class="remove"  v-if="item.path" @click="removeImg(item)">X</a>
-                                       <img :src="item.path" v-if="item.path"/>
-                                       <img src="../../images/add.png" v-if="!item.path" @click="selectImg(item,'upload_img_'+index)"/>
+                                       <img :src="editData.path" v-if="editData.path"/>
+                                       <img src="../../images/add.png" v-if="!editData.path" @click="selectImg"/>
 
-                                       <input type="file" :id="'upload_img_'+index" style="display:none;"/>
+                                       <input type="file" id="upload_img_0" style="display:none;"/>
                                    </div>
                                    <div class="form-li mt-5">
-                                       <input class="form-control" type="text" placeholder="请输入跳转地址" v-model="item.link"/>
+                                       <input class="form-control" type="text" placeholder="请输入跳转地址" v-model="editData.link"/>
                                    </div>
                                </div>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:100px">
-                                &nbsp;
-                            </td>
-                            <td>
-                                <a @click="addAdvImg">+ 添加广告图片 </a>
                             </td>
                         </tr>
                     </table>
@@ -92,21 +83,26 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>广告代码</th>
                             <th>广告位名称</th>
                             <th>图片</th>
+                            <th>跳转页面</th>
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(item,index) in list">
-                            <td>{{item.code}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.path}}</td>
-                            <td>状态</td>
                             <td>
-                                <a @click="editAdv()">编辑</a>
+                                <img :src="item.path"/>
+                            </td>
+                            <td>{{item.link}}</td>
+                            <td>{{item.status=='0'?'下线':'上线'}}</td>
+                            <td>
+                                <a @click="editAdv(item.id)">编辑</a>
+                                <a @click="onLineAdv(item)" v-if="item.status==0">上线</a>
+                                <a @click="offLineAdv(item)" v-if="item.status==1">下线</a>
+                                <a @click="delAdv(item)">删除</a>
                             </td>
                         </tr>
 

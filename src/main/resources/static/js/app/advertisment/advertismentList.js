@@ -1,7 +1,9 @@
 define(['vue', 'utils', 'fileUpload', 'jquery'], function (vue, utils, fileUpload) {
     var _editData_temp = {
+        id:0,
         code: '',
-        imgs: []
+        path: '',
+        link:''
     };
     new vue({
         el: '#app',
@@ -19,7 +21,41 @@ define(['vue', 'utils', 'fileUpload', 'jquery'], function (vue, utils, fileUploa
             newAdv: function () {
                 this.showDialog();
             },
-            editAdv: function () {
+            editAdv: function (id) {
+
+                this.getAdvDetail(id)
+            },
+            onLineAdv:function(item){
+                var _this = this;
+                var _url="/admin/adv/get_adv_online";
+                utils.post(_url,{id:item.id},function (res) {
+                   item.status=res.result;
+                })
+            },
+            offLineAdv:function(item){
+                var _this = this;
+                var _url="/admin/adv/get_adv_offline";
+                utils.post(_url,{id:item.id},function (res) {
+                    item.status=res.result;
+                })
+            },
+            delAdv:function(item){
+                var _this = this;
+                var _url="/admin/adv/del_adv";
+                utils.post(_url,{id:item.id,path:item.path},function (res) {
+                    _this.list = res.result;
+                })
+            },
+            getAdvDetail:function(id){
+                var _this = this;
+                var param = {
+                    id:id
+                }
+                var _url="/admin/adv/get_adv_detail";
+                utils.post(_url,param,function (res) {
+                    _this.editData = res.result;
+                    _this.showDialog();
+                })
             },
             getAdvList: function () {
                 var _this = this;
@@ -34,53 +70,37 @@ define(['vue', 'utils', 'fileUpload', 'jquery'], function (vue, utils, fileUploa
             },
             saveAdv: function () {
                 var _this = this;
-
-                var param={
-                    code:_this.editData.code,
-                    advertismentList:_this.editData.imgs
-                }
                 var _url="/admin/adv/save";
-                utils.post(_url,param,function (res) {
+                utils.post(_url,_this.editData,function (res) {
                     _this.list = res.result;
-                    _this.cancelAdv();
-                    _this.editData = eval('(' + JSON.stringify(_editData_temp) + ')')
+                    _this.closeWindow();
                 })
             },
             cancelAdv: function () {
                 var _this = this;
-                var imgs = this.editData.imgs;
                 var flag=true;
-                if(imgs.length>0){
                     if(confirm('是否确认取消？取消后数据将不保存！')){
-                        imgs.forEach(function (value) {
-                            _this.doRemove(value)
-                        })
+                        _this.doRemove(_this.editData)
                     }else{
                         flag=false;
                     }
-                }
                 if(flag) {
-                    this.editData = eval('(' + JSON.stringify(_editData_temp) + ')');
-                    this.hideDialog();
+                   this.closeWindow();
                 }
             },
-            addAdvImg: function () {
-                var imgs = this.editData.imgs;
-                if (imgs.length == 5) {
-                    alert('最多上传5张图片！');
-                    return false;
-                }
-                var imgItem = {path: '', link: ''};
-                imgs.push(imgItem);
-                this.editData.imgs = imgs;
+            closeWindow:function(){
+                this.editData = eval('(' + JSON.stringify(_editData_temp) + ')');
+                this.hideDialog();
             },
-            selectImg: function (item, id) {
-                var _file_el = $('#' + id);
+            selectImg: function () {
+                var _this = this;
+                var id='upload_img_0';
+                var _file_el = $('#'+id);
                 _file_el.trigger('click');
                 _file_el.change(function () {
                     fileUpload.uploadImg('/web/admin/adv/upload', id, function (res) {
                         //alert(res.result)
-                        item.path = res.result;
+                        _this.editData.path = res.result;
                     })
                 })
             },
@@ -92,7 +112,7 @@ define(['vue', 'utils', 'fileUpload', 'jquery'], function (vue, utils, fileUploa
             },
             doRemove:function(item){
                 var _url = "/admin/adv/remove_img";
-                var param = {path: item.path};
+                var param = {id:item.id||0,path: item.path};
                 utils.post(_url, param, function (res) {
                     item.path='';
                 })

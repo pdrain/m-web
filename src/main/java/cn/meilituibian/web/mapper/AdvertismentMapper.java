@@ -4,6 +4,7 @@ import cn.meilituibian.web.domain.Advertisment;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface AdvertismentMapper {
@@ -11,10 +12,14 @@ public interface AdvertismentMapper {
 
     void updateAdvertisment(Advertisment advertisment);
 
+    void removeAdvertisment(Integer id);
+
     List<Advertisment> getAdvertisment(Advertisment advertisment);
 
     Advertisment getAdvertismentById(Integer id);
 
-    Integer  addAdvertismentList(List<Advertisment> advertismentList);
+    void updateAdvertisMentStatus(Map<String,Object> args);
+
+    void deleteAdvertisment(Integer id);
 
 }

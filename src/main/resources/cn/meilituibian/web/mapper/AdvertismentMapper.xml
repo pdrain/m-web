@@ -4,12 +4,21 @@
 
 <mapper namespace="cn.meilituibian.web.mapper.AdvertismentMapper">
     <insert id="addNewAdvertisment" parameterType="Advertisment">
-      insert into advertisment (code,path,status) values (#{code},#{path},#{status})
+      insert into advertisment (code,path,status,link) values (#{code},#{path},#{status},#{link})
     </insert>
 
+
     <update id="updateAdvertisment" parameterType="Advertisment">
-        update advertisment set path=#{path},status=#{status} where id=#{id}
+        update advertisment set path=#{path},code=#{code},link=#{link},status=#{status} where id=#{id}
     </update>
+
+    <update id="updateAdvertisMentStatus">
+        update advertisment set status=#{status} where id=#{id}
+    </update>
+
+    <delete id="deleteAdvertisment" >
+        delete from advertisment where id=#{id}
+    </delete>
 
     <select id="getAdvertisment" resultType="Advertisment" parameterType="Advertisment">
         select a.*,b.name from advertisment  a
@@ -23,24 +32,9 @@
         </if>
     </select>
 
-    <select id="getAdvertismentById" resultType="Advertisment">
+    <select id="getAdvertismentById" resultType="Advertisment" >
         select * from advertisment where 1=1 and id=#{id}
     </select>
 
-    <insert id="addAdvertismentList" parameterType="java.util.List">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            select LAST_INSERT_ID()
-        </selectKey>
-        insert into advertisment
-        (code,path,status,link)
-        values
-        <foreach collection="list" item="advertisment" index="index" separator=",">
-            (
-            #{advertisment.code},
-            #{advertisment.path},
-            #{advertisment.status},
-            #{advertisment.link}
-            )
-        </foreach>
-    </insert>
+
 </mapper>

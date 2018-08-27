@@ -15572,8 +15572,8 @@ be a descendant of the grid when it is being dragged.
 }
 
 .edit-dialog .content-container .content table img{
-  width:300px;
-  height: 100px;
+  width:180px;
+  height: 60px;
   border:1px #ccc solid;
   display:block;
 }
@@ -15587,7 +15587,7 @@ be a descendant of the grid when it is being dragged.
   border:1px #fff solid;
   border-radius: 3px;
   border-bottom: 1px #ccc dashed;
-  height: 155px !important;
+  height: 130px !important;
 
 }
 
@@ -15614,5 +15614,5 @@ be a descendant of the grid when it is being dragged.
   text-align: center;
   line-height: 25px;
   top: 15px;
-  left: 270px;
+  left: 150px;
 }

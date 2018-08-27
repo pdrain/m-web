@@ -1,6 +1,7 @@
 package cn.meilituibian.web.controller;
 
 import cn.meilituibian.web.RequestForm.AdvertismentForm;
+import cn.meilituibian.web.ResponseObject.AdvertismentListResp;
 import cn.meilituibian.web.domain.Advertisment;
 import cn.meilituibian.web.domain.ResultObject;
 import cn.meilituibian.web.domain.ResultStatus;
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -74,13 +77,18 @@ public class AdvertismentController extends BaseController {
     public ResultObject saveAdvs(@RequestBody AdvertismentForm advertismentForm) {
         ResultObject result = new ResultObject();
         try {
-            List<Advertisment> list = new ArrayList<>();
-            for(Advertisment item:advertismentForm.getAdvertismentList()){
-                item.setCode(advertismentForm.getCode());
-                item.setStatus(0);
-                list.add(item);
+            Advertisment advertisment = new Advertisment();
+
+            advertisment.setId(advertismentForm.getId());
+            advertisment.setCode(advertismentForm.getCode());
+            advertisment.setLink(advertismentForm.getLink());
+            advertisment.setPath(advertismentForm.getPath());
+            advertisment.setStatus(advertismentForm.getStatus());
+            if(advertismentForm.getId()==0) {
+                advertisment.setStatus(0);
             }
-            this.advertismentService.saveAdvs(list);
+
+            this.advertismentService.saveAdvs(advertisment);
             List<Advertisment> advList = this.advertismentService.getAdvertisment(new Advertisment());
             result.setResult(advList);
             result.setCode(ResultStatus.SUCESS);
@@ -108,4 +116,64 @@ public class AdvertismentController extends BaseController {
         }
         return result;
     }
+
+    @RequestMapping(value = "get_adv_detail", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultObject getAdvDetail(@RequestBody AdvertismentForm advertismentForm) {
+        ResultObject result = new ResultObject();
+        try {
+
+            Advertisment advertisment = this.advertismentService.getAdvertismentDetail(advertismentForm.getId());
+            result.setResult(advertisment);
+            result.setCode(ResultStatus.SUCESS);
+        } catch (Exception e) {
+            result.setCode(ResultStatus.ERROR);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
+    @RequestMapping(value = "get_adv_online", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultObject onLineAdv(@RequestBody AdvertismentForm advertismentForm) {
+        ResultObject result = new ResultObject();
+        try {
+            this.advertismentService.onLineAdvertisment(advertismentForm.getId());
+            result.setResult(1);
+            result.setCode(ResultStatus.SUCESS);
+        } catch (Exception e) {
+            result.setCode(ResultStatus.ERROR);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
+    @RequestMapping(value = "get_adv_offline", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultObject offLineAdv(@RequestBody AdvertismentForm advertismentForm) {
+        ResultObject result = new ResultObject();
+        try {
+            this.advertismentService.offLineAdvertisment(advertismentForm.getId());
+            result.setResult(0);
+            result.setCode(ResultStatus.SUCESS);
+        } catch (Exception e) {
+            result.setCode(ResultStatus.ERROR);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
+    @RequestMapping(value = "del_adv", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultObject delAdv(@RequestBody AdvertismentForm advertismentForm) {
+        ResultObject result = new ResultObject();
+        try {
+            this.advertismentService.deleteAdvertisment(advertismentForm.getId(),advertismentForm.getPath());
+            List<Advertisment> advList = this.advertismentService.getAdvertisment(new Advertisment());
+            result.setResult(advList);
+            result.setCode(ResultStatus.SUCESS);
+        } catch (Exception e) {
+            result.setCode(ResultStatus.ERROR);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
+
 }
