@@ -20,4 +20,8 @@ public class WxUserService {
     public WxUser getWxUserById(Long userId) {
         return wxUserMapper.getWxUserById(userId);
     }
+
+    public void update(WxUser wxUser) {
+        wxUserMapper.update(wxUser);
+    }
 }

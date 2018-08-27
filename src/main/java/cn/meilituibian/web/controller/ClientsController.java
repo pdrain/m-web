@@ -46,4 +46,10 @@ public class ClientsController{
 		view.addObject("user", wxUser);
 		return view;
 	}
+
+	@RequestMapping("/update")
+	public String update(WxUser wxUser) {
+		wxUserService.update(wxUser);
+		return "redirect:list";
+	}
 }

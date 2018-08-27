@@ -23,4 +23,19 @@
          taxpayer_code as taxpayerCode,business_license as businessLicense,job_title as jobTitle,update_time as updateTime FROM wx_user WHERE
          user_id = #{userId}
      </select>
+
+     <update id="update" parameterType="WxUser">
+         update wx_user
+         <set>
+
+             <if test="contact != null">contact=#{contact},</if>
+             <if test="contractNo != null">contract_no=#{contractNo},</if>
+             <if test="phone != null">phone=#{phone},</if>
+             <if test="numberId != null">number_id=#{numberId},</if>
+             <if test="taxpayerCode != null">taxpayer_code=#{taxpayerCode},</if>
+             <if test="updateTime != null">update_time=#{updateTime},</if>
+             <if test="businessLicense != null">business_license=#{businessLicense},</if>
+         </set>
+         where user_id=#{userId}
+     </update>
 </mapper>

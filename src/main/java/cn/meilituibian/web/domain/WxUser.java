@@ -1,6 +1,7 @@
 package cn.meilituibian.web.domain;
 
 import cn.meilituibian.web.common.JobTitleEnum;
+import cn.meilituibian.web.common.UserTypeEnum;
 
 import java.util.Date;
 
@@ -157,7 +158,7 @@ public class WxUser {
     }
 
     public String getUserTypeName() {
-        return userTypeName;
+        return UserTypeEnum.getTypeName(this.userType);
     }
 
     public void setUserTypeName(String userTypeName) {
