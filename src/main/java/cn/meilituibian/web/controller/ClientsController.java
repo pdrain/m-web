@@ -2,7 +2,7 @@ package cn.meilituibian.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import cn.meilituibian.web.domain.WxUser;
 import cn.meilituibian.web.service.WxUserService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.meilituibian.web.domain.Category;
+
 
 @Controller
 @RequestMapping("/admin/clients")
@@ -36,6 +36,8 @@ public class ClientsController{
 	@RequestMapping("/performance")
 	public ModelAndView performance(){
 		ModelAndView view = new ModelAndView("clientPerformance");
+		List<WxUser> clients = wxUserService.userList(null);
+		view.addObject("clients", clients);
 		return view;
 	}
 
