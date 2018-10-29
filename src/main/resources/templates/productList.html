@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head">
+
+</head>
+<body class="sidebar-mini fixed">
+<div class="wrapper">
+    <!-- Navbar-->
+    <header th:replace="common/header :: header"></header>
+    <!-- Side-Nav-->
+    <aside th:replace="common/menu :: menu"></aside>
+
+    <div class="content-wrapper">
+        <div class="page-title">
+            <div>
+                <p>产品列表</p>
+            </div>
+            <div>
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home fa-lg"></i></li>
+                    <li>产品管理</li>
+                    <li><a href="#">产品列表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <form class="form-horizontal" th:action="@{/admin/articles(m=2)}" method="get">
+                        <label class="col-lg-2">文章状态</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="status" id="status">
+                            <option value="">所有</option>
+                            <option value="0">未发布</option>
+                            <option value="1">已发布</option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-primary" type="submit" id="search">查询</button>
+                    </div>
+                    </form>
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>产品名称</th>
+                            <th>兑换积分</th>
+                            <th>价格</th>
+                            <th>数量</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product:${list}">
+                            <td ><a th:href="@{/admin/product/edit(id=${product.id})}" th:text="${product.name}"></a></td>
+                            <td th:text="${product.point}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.quantity}"></td>
+                            <td th:text="${product.typeName}"></td>
+                            <td th:text="${product.status==0?'无效':'有效'}"></td>
+                            <td>
+                                <a th:href="@{/admin/product/edit(id=${product.id})}" >编辑</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascripts-->
+<div th:replace="common/foot :: foot"></div>
+<script th:src="@{/js/app/article.js}"></script>
+</body>
+</html>

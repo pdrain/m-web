@@ -2,13 +2,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.meilituibian.api.mapper.ProductMapper">
+<mapper namespace="cn.meilituibian.web.mapper.ProductMapper">
     <select id="list" resultType="Product">
-        select id, name, point, icon,content, price, quantity,'type',status, product_imgs as productImgs,type_name as typeName from product where status=1
+        select id, name, point, icon,content, price, quantity,type,status, product_imgs as productImgs,type_name as typeName from product where status=1
     </select>
 
     <select id="getProductById" resultType="Product" parameterType="long">
-        select id, name, point, icon,content, price, quantity,'type',status ,product_imgs as productImgs,type_name as typeName from product where id=#{id} and status=1
+        select id, name, point, icon,content, price, quantity,type,status ,product_imgs as productImgs,type_name as typeName from product where id=#{id} and status=1
     </select>
 
 </mapper>
